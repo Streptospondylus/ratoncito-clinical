@@ -40,6 +40,8 @@ jobs:
         run: npm run test
 
       - name: Build application
+        env:
+          VITE_RECIPIENT_NAME: ${{ secrets.RATONCITO_RECIPIENT_NAME }}
         run: npm run build
 
       - name: Upload Pages artifact

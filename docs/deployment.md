@@ -27,7 +27,8 @@ projet.
 
 ## Vérifications avant partage
 
-1. Renseigner recipient.displayName dans src/config.ts.
+1. Dans GitHub, créer le secret Actions `RATONCITO_RECIPIENT_NAME` avec le prénom
+   ou surnom à révéler. Ne pas l’écrire dans un fichier du dépôt public.
 2. Tester l’ouverture depuis un téléphone réel.
 3. Ouvrir chaque module d’examens.
 4. Classer les sept hypothèses.

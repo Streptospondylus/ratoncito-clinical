@@ -34,10 +34,13 @@ Les commandes utiles sont :
 
 ## Personnalisation
 
-Les informations modifiables sont regroupées dans src/config.ts. Avant un envoi,
-renseigner notamment :
+Les informations structurelles modifiables sont regroupées dans src/config.ts.
+Pour le prénom ou surnom du destinataire, utiliser la variable d’environnement
+`VITE_RECIPIENT_NAME` en local ou le secret GitHub Actions
+`RATONCITO_RECIPIENT_NAME` pour Pages. Ne pas écrire ce prénom dans le dépôt public.
 
-- recipient.displayName ;
+Avant un envoi, vérifier notamment :
+
 - patient.age ;
 - patient.weight ;
 - les noms de cliniciens si nécessaire ;

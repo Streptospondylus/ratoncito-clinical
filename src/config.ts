@@ -7,8 +7,8 @@ export const appConfig = {
     tagline: "Référé · précision · continuité"
   },
   recipient: {
-    // À renseigner avant l’envoi. Aucun prénom n’est hardcodé dans l’application.
-    displayName: ""
+    // Injecté uniquement dans le build Pages via le secret GitHub Actions.
+    displayName: import.meta.env.VITE_RECIPIENT_NAME ?? ""
   },
   patient: {
     name: "Ratoncito",
