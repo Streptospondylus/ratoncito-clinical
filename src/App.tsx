@@ -1142,51 +1142,43 @@ function App() {
 
   function renderDifferentials() {
     return (
-      <section className="page-section">
+      <section className="page-section differential-page">
         <SectionIntro
           eyebrow={sectionMeta.differentials.eyebrow}
           title="Hypothèses diagnostiques"
-          description="Classez les hypothèses selon les éléments actuellement disponibles."
+          description="Évaluation différentielle du tableau clinique à partir des données disponibles."
         >
           <span className="section-counter">
             {classifiedCount} / {hypotheses.length} classifiées
           </span>
         </SectionIntro>
 
-        <div className="reasoning-intro">
-          <div className="reasoning-icon">
-            <Icon name="branch" size={22} />
-          </div>
-          <div>
-            <p className="card-eyebrow">AIDE AU RAISONNEMENT</p>
-            <h2>Le dossier ne demande pas de deviner.</h2>
-            <p>
-              Écartez ce qui n’est pas soutenu, gardez une réserve sur ce qui reste
-              incomplet, puis retenez l’hypothèse qui explique le plus de faits avec
-              le moins d’ajouts.
-            </p>
-          </div>
-        </div>
-
         <div className="hypothesis-list">
+          <div aria-hidden="true" className="hypothesis-list-header">
+            <span>Réf.</span>
+            <span>Hypothèse</span>
+            <span>Éléments disponibles</span>
+            <span>Décision clinique</span>
+          </div>
           {hypotheses.map((hypothesis, index) => {
             const state = hypothesisState[hypothesis.id];
             const isCorrect = state === hypothesis.expected;
             return (
               <article
                 className={
-                  "card hypothesis-card" +
+                  "hypothesis-card" +
                   (state ? " hypothesis-card-classified" : "") +
                   (isCorrect ? " hypothesis-card-correct" : "")
                 }
                 key={hypothesis.id}
               >
-                <div className="hypothesis-top">
-                  <span className="hypothesis-index">0{index + 1}</span>
-                  <div className="hypothesis-name">
-                    <span>{hypothesis.category}</span>
-                    <h3>{hypothesis.label}</h3>
-                  </div>
+                <span className="hypothesis-index">0{index + 1}</span>
+                <div className="hypothesis-name">
+                  <span>{hypothesis.category}</span>
+                  <h3>{hypothesis.label}</h3>
+                </div>
+                <p className="hypothesis-rationale">{hypothesis.rationale}</p>
+                <div className="hypothesis-decision">
                   {state ? (
                     <span className={"decision-badge decision-badge-" + state}>
                       <Icon name={state === "retain" ? "check" : "note"} size={13} />
@@ -1195,9 +1187,6 @@ function App() {
                   ) : (
                     <span className="decision-pending">À classer</span>
                   )}
-                </div>
-                <div className="hypothesis-body">
-                  <p>{hypothesis.rationale}</p>
                   <div className="decision-actions" role="group" aria-label={"Classer " + hypothesis.label}>
                     <button
                       className={state === "retain" ? "decision-button decision-button-selected" : "decision-button"}
@@ -1236,16 +1225,16 @@ function App() {
               <Icon name={readyForSynthesis ? "check" : "lock"} size={18} />
             </span>
             <div>
-              <p className="card-eyebrow">ÉTAPE DE SYNTHÈSE</p>
+              <p className="card-eyebrow">VALIDATION DE LA SYNTHÈSE</p>
               <strong>
                 {readyForSynthesis
-                  ? "Les éléments nécessaires sont réunis."
-                  : "Complétez les classifications pour générer la synthèse."}
+                  ? "Synthèse prête à être générée."
+                  : "Synthèse actuellement verrouillée."}
               </strong>
               <small>
                 {diagnosticsComplete
-                  ? "Tous les modules d’examens ont été consultés."
-                  : "Tous les examens complémentaires doivent être ouverts."}
+                  ? `${classifiedCount} / ${hypotheses.length} hypothèses évaluées.`
+                  : "Examens complémentaires encore incomplets."}
               </small>
             </div>
           </div>

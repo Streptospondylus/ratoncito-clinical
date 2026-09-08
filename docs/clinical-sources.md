@@ -98,4 +98,4 @@ https://vet30000.com/
 - ne pas remplacer le rat par un chien ou un chat ;
 - ne pas ajouter d’imagerie ou de test spectaculaire sans justification ;
 - ne pas révéler l’identité d’Individu A avant la synthèse ;
-- conserver les interactions comme des aides au raisonnement, sans score de jeu.
+- conserver les interactions comme des étapes cliniques, sans score de jeu.
