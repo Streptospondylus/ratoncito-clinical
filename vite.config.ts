@@ -5,7 +5,6 @@ export default defineConfig({
   plugins: [react()],
   build: {
     target: "es2020",
-    sourcemap: false,
-    cssMinify: "lightningcss"
+    sourcemap: false
   }
 });
