@@ -13,6 +13,11 @@ Le résultat déployable se trouve dans dist/.
 
 ## Hébergement
 
+Le prénom injecté au build figure dans le JavaScript servi aux visiteurs. Le secret
+Actions protège sa valeur dans le dépôt, pas dans le site publié. GitHub Pages ne
+fournit ici aucun contrôle d’accès. Le site reste accessible sans authentification.
+Sans prénom configuré, la révélation utilise « Vous ».
+
 L’application ne nécessite ni serveur applicatif ni base de données. Elle peut être
 servie par un hébergeur statique compatible avec Vite, par exemple :
 

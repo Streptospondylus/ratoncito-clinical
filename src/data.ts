@@ -120,25 +120,25 @@ export const historyEntries: HistoryEntry[] = [
   {
     label: "Installation du phénomène",
     date: "Début rapporté",
-    text: "Évolution progressive, installée de longue date, sans épisode aigu ni altération générale associée.",
+    text: "Attachement ancien à un individu familier. Appel usuel : « mon raton ». Réponse d’orientation immédiate lorsque cet individu le prononce.",
     tags: ["progressif", "stable"]
   },
   {
     label: "Épisodes reproductibles",
     date: "Circonstances spécifiques",
-    text: "Orientation préférentielle, recherche de proximité et vigilance accrue lors de l’exposition à un facteur particulier.",
+    text: "Reconnaissance de la voix, du rire et de l’odeur de l’individu. Approche spontanée, puis maintien du contact. Réponse non reproduite avec un opérateur inconnu.",
     tags: ["répétable", "sélectif"]
   },
   {
     label: "Éloignement / rapprochement",
     date: "Dynamique observée",
-    text: "Atténuation rapide lors du rapprochement avec le facteur concerné, puis réapparition quasi systématique après éloignement.",
+    text: "En séparation : contrôle du point de sortie, préparation du lieu de repos et regroupement des objets avant les retrouvailles. Apaisement au contact, sans délai d’habituation.",
     tags: ["réversible", "contextuel"]
   },
   {
-    label: "État général conservé",
+    label: "Conditions de repos et d’alimentation",
     date: "À la consultation",
-    text: "Appétit conservé. Activité générale satisfaisante. Aucun épisode douloureux, digestif ou locomoteur rapporté.",
+    text: "Prise alimentaire facilitée par les repas préparés par l’individu. Repos partagé devant Hunter × Hunter. Surveillance intermittente des mouvements de ses pieds, sans interruption du repos.",
     tags: ["rassurant", "non spécifique"]
   }
 ];
@@ -229,7 +229,7 @@ export const diagnosticPanels: DiagnosticPanel[] = [
         interpretation: "Dans l’intervalle publié"
       },
       {
-        analyte: "Urée (BUN)",
+        analyte: "Urée",
         value: "4,1 mmol/L",
         reference: "2,5–6,6 mmol/L¹",
         interpretation: "Dans l’intervalle publié"
@@ -278,8 +278,8 @@ export const diagnosticPanels: DiagnosticPanel[] = [
     description: "Comparaison contrôlée de plusieurs contextes d’exposition.",
     status: "Signal dominant identifié",
     icon: "eye",
-    summary: "Une réponse intense, constante et rapidement reproductible est observée pour un stimulus unique.",
-    note: "Les valeurs sont des mesures de simulation narrative : elles décrivent une dynamique relative et ne constituent pas un test clinique validé."
+    summary: "Coopération et apaisement soutenus uniquement en présence de l’individu familier.",
+    note: "Observations intra-individuelles ; absence d’échelle comportementale standardisée."
   }
 ];
 
@@ -298,7 +298,7 @@ export const stimulusRows: StimulusRow[] = [
   {
     id: "food",
     label: "Alimentation",
-    detail: "Présentation d’un aliment apprécié",
+    detail: "Même repas, présenté par un tiers",
     orientation: "4,6 s",
     attention: "Modérée",
     approach: "2 / 6",
@@ -309,7 +309,7 @@ export const stimulusRows: StimulusRow[] = [
   {
     id: "enrichment",
     label: "Enrichissement",
-    detail: "Objet nouveau non odorant",
+    detail: "Hunter × Hunter sans présence de l’individu",
     orientation: "6,2 s",
     attention: "Modérée",
     approach: "1 / 6",
@@ -320,7 +320,7 @@ export const stimulusRows: StimulusRow[] = [
   {
     id: "handling",
     label: "Manipulation neutre",
-    detail: "Contact standardisé par opérateur",
+    detail: "Contact proposé par un opérateur inconnu",
     orientation: "3,8 s",
     attention: "Brève",
     approach: "0 / 6",
@@ -353,7 +353,7 @@ export const stimulusRows: StimulusRow[] = [
   {
     id: "individual-a",
     label: "Individu A",
-    detail: "Stimulus cible · exposition répétée",
+    detail: "Voix, odeur et contact familiers",
     orientation: "0,7 s",
     attention: "Prolongée",
     approach: "6 / 6",
@@ -406,11 +406,11 @@ export const hypotheses: Hypothesis[] = [
   },
   {
     id: "primary-behavioral",
-    label: "Syndrome comportemental primaire",
+    label: "Trouble comportemental primaire",
     category: "Comportement",
     expected: "uncertain",
-    feedback: "Ne suffit pas à expliquer la présence d’un signal unique et reproductible.",
-    rationale: "Une composante comportementale existe, mais elle est structurée autour d’un facteur précis."
+    feedback: "Le caractère sélectif ne suffit pas à établir un trouble ; son retentissement reste à préciser.",
+    rationale: "La réponse est comportementale, mais aucun retentissement durable sur l’alimentation ou l’activité n’est documenté."
   },
   {
     id: "specific-stimulus",

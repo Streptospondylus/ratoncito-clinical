@@ -54,5 +54,5 @@ export function getHypothesisFeedback(
     return feedback;
   }
 
-  return "Choix enregistré. Les éléments du dossier orientent toutefois plutôt vers une réponse contextuelle sélective.";
+  return "Choix enregistré. " + feedback;
 }

@@ -97,5 +97,19 @@ https://vet30000.com/
 - ne pas ajouter de fausses plages de référence pour Rattus rattus ;
 - ne pas remplacer le rat par un chien ou un chat ;
 - ne pas ajouter d’imagerie ou de test spectaculaire sans justification ;
-- ne pas révéler l’identité d’Individu A avant la synthèse ;
+- le destinataire est nommé dès l’ouverture ; la synthèse confirme son rôle d’Individu A ;
 - conserver les interactions comme des étapes cliniques, sans score de jeu.
+
+## Dossier individuel et photographies
+
+Les comparaisons de coopération (six présentations par condition), les anecdotes
+et la conclusion d’adoption appartiennent au scénario. Elles ne constituent pas
+une recommandation de prise en charge animale. Le refus conduit à un épilogue
+explicitement fictif et réversible. Aucune acceptation n’est envoyée à un serveur.
+
+Le dossier est adressé à VET30000 ; il n’est pas rédigé ou validé par la clinique.
+Adresse vérifiée sur https://vet30000.com/informations-pratiques/ le 10 septembre
+2026. Le nom de la destinataire reste injecté par variable d’environnement.
+
+Les deux photographies sont générées, non des documents médicaux réels. Voir
+`image-prompts.md` pour les prompts et les fichiers livrés.

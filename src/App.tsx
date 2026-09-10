@@ -7,12 +7,10 @@ import {
   historyEntries,
   sectionMeta,
   stimulusRows,
-  type IconName,
-  type StimulusRow
+  type IconName
 } from "./data";
 import {
   getHypothesisFeedback,
-  getProgressPercent,
   isReadyForSynthesis,
   type HypothesisState,
   type RevealStage,
@@ -162,106 +160,9 @@ function LogoMark({ large = false }: { large?: boolean }) {
   );
 }
 
-function RatIllustration() {
-  return (
-    <svg
-      aria-label="Illustration stylisée d’un rat noir à visée clinique"
-      className="rat-illustration"
-      role="img"
-      viewBox="0 0 420 260"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id="ratBody" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#dce4e1" />
-          <stop offset="1" stopColor="#aebdb8" />
-        </linearGradient>
-        <linearGradient id="ratEar" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#e3b6aa" />
-          <stop offset="1" stopColor="#c7887d" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M59 202c78 20 198 16 293-19 25-9 38-6 47 3 8 8 5 17-9 19-44 6-83 25-122 35-82 20-164 5-209-22Z"
-        fill="#d3ded9"
-        opacity=".55"
-      />
-      <path
-        d="M57 169c13-47 64-76 135-70 64 5 119 36 119 76 0 37-47 59-112 59-79 0-143-23-142-65Z"
-        fill="url(#ratBody)"
-        stroke="#6f8580"
-        strokeWidth="3"
-      />
-      <path
-        d="M255 112c6-28 28-46 49-41 17 4 22 22 14 37-8 16-26 25-49 27Z"
-        fill="url(#ratBody)"
-        stroke="#6f8580"
-        strokeWidth="3"
-      />
-      <path
-        d="M281 74c-6-23 3-45 19-48 15-3 25 11 24 28-1 16-12 28-31 34Z"
-        fill="url(#ratEar)"
-        stroke="#6f8580"
-        strokeWidth="3"
-      />
-      <path
-        d="M300 72c-3-14 2-27 11-29 8-1 13 6 12 16-1 9-8 16-18 20Z"
-        fill="#f0ccc2"
-        opacity=".9"
-      />
-      <path
-        d="M304 109c-1-21 9-36 24-39 13-2 25 9 25 23 0 16-12 29-34 35Z"
-        fill="url(#ratEar)"
-        stroke="#6f8580"
-        strokeWidth="3"
-      />
-      <path
-        d="M319 106c1-11 7-19 15-20 7-1 12 5 11 12-1 9-8 16-20 20Z"
-        fill="#f0ccc2"
-        opacity=".9"
-      />
-      <path
-        d="M302 111c15 2 25 9 30 22"
-        fill="none"
-        stroke="#506964"
-        strokeLinecap="round"
-        strokeWidth="3"
-      />
-      <circle cx="323" cy="99" fill="#19363b" r="4.4" />
-      <circle cx="324.2" cy="97.8" fill="#f7faf8" r="1.2" />
-      <path d="M340 119c13 1 23 5 34 11M339 124c14 5 24 11 33 20M339 114c13-4 24-4 36-2" fill="none" stroke="#637b75" strokeLinecap="round" strokeWidth="2" />
-      <path d="M270 190c4 15 2 27-6 38M298 184c4 14 3 24-3 34" fill="none" stroke="#6f8580" strokeLinecap="round" strokeWidth="5" />
-      <path d="M96 206c-3 13-2 22 4 29M124 211c-1 12 1 20 7 27" fill="none" stroke="#6f8580" strokeLinecap="round" strokeWidth="5" />
-      <path
-        d="M58 177c-27 5-37 17-34 29 3 12 21 15 38 5"
-        fill="none"
-        stroke="#8fa29c"
-        strokeLinecap="round"
-        strokeWidth="8"
-      />
-      <path d="M173 117c26 5 44 5 62 0" fill="none" opacity=".55" stroke="#eff5f2" strokeLinecap="round" strokeWidth="4" />
-      <path d="M208 166c-9 7-18 7-27 0" fill="none" stroke="#748b85" strokeLinecap="round" strokeWidth="2.5" />
-      <circle cx="236" cy="111" fill="#d77a5f" r="4" />
-    </svg>
-  );
-}
-
-function Sparkline() {
-  return (
-    <svg
-      aria-label="Courbe synthétique de la réponse observée"
-      className="sparkline"
-      role="img"
-      viewBox="0 0 420 130"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M0 101H420M0 66H420M0 31H420" stroke="#d9e5e0" strokeDasharray="2 7" />
-      <path d="M0 99C33 100 42 95 72 96S111 100 139 93 168 72 194 78 222 91 248 80 275 48 300 54 328 76 350 55 385 26 420 35V130H0Z" fill="#d7eee9" opacity=".72" />
-      <path d="M0 99C33 100 42 95 72 96S111 100 139 93 168 72 194 78 222 91 248 80 275 48 300 54 328 76 350 55 385 26 420 35" fill="none" stroke="#1d7976" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
-      <circle cx="300" cy="54" fill="#fff" r="5" stroke="#d77a5f" strokeWidth="3" />
-      <circle cx="420" cy="35" fill="#1d7976" r="4" />
-    </svg>
-  );
+function PatientPhoto() {
+  return <img className="patient-photo" src={import.meta.env.BASE_URL + "images/ratoncito-examen.jpg"}
+    alt="Ratoncito, rat brun éveillé sur une table d’examen, accompagné d’un petit paquet cadeau." width="1536" height="1024" />;
 }
 
 function StatusPill({
@@ -295,155 +196,45 @@ function SectionIntro({
       <div>
         <p className="eyebrow">{eyebrow}</p>
         <h1>{title}</h1>
-        <p className="section-description">{description}</p>
+        {description ? <p className="section-description">{description}</p> : null}
       </div>
       {children ? <div className="intro-action">{children}</div> : null}
     </div>
   );
 }
 
-function Field({
-  label,
-  value,
-  muted = false
-}: {
-  label: string;
-  value: ReactNode;
-  muted?: boolean;
-}) {
-  return (
-    <div className={muted ? "field field-muted" : "field"}>
-      <span>{label}</span>
-      <strong>{value}</strong>
-    </div>
-  );
-}
-
 function Portal({ onOpen }: { onOpen: () => void }) {
   return (
-    <main className="portal-shell">
-      <div className="portal-orbit portal-orbit-one" />
-      <div className="portal-orbit portal-orbit-two" />
-      <header className="portal-header">
-        <div className="brand-lockup brand-lockup-light">
-          <LogoMark />
-          <div>
-            <strong>{appConfig.clinic.shortName}</strong>
-            <span>Référé vétérinaire</span>
-          </div>
-        </div>
-        <span className="portal-secure">
-          <Icon name="shield" size={15} />
-          Accès clinique
-        </span>
-      </header>
-
-      <div className="portal-content">
-        <section className="portal-copy">
-          <p className="portal-kicker">
-            <span className="live-line" />
-            {appConfig.clinic.service}
-          </p>
-          <h1>
-            Un dossier atypique
-            <br />
-            attend votre lecture.
-          </h1>
-          <p className="portal-lede">
-            Une évaluation spécialisée a été préparée pour un patient NAC présentant
-            une réponse comportementale persistante. Les éléments sont prêts à être
-            examinés.
-          </p>
-          <button className="primary-button primary-button-light" onClick={onOpen}>
-            Ouvrir le dossier
-            <Icon name="arrow" size={17} />
-          </button>
-          <p className="portal-footnote">
-            Dossier référé · {appConfig.case.id} · Lecture optimisée pour mobile
-          </p>
-        </section>
-
-        <section aria-label="Aperçu du dossier" className="portal-preview">
-          <div className="preview-topline">
-            <div className="brand-lockup">
-              <LogoMark />
-              <div>
-                <strong>{appConfig.clinic.shortName}</strong>
-                <span>Unité NAC</span>
-              </div>
-            </div>
-            <StatusPill>Prêt</StatusPill>
-          </div>
-          <div className="preview-divider" />
-          <div className="preview-label">DOSSIER RÉFÉRÉ</div>
-          <div className="preview-patient">
-            <div>
-              <h2>{appConfig.patient.name}</h2>
-              <p>
-                <em>{appConfig.patient.species}</em> · {appConfig.patient.sex.toLowerCase()}
-              </p>
-            </div>
-            <div className="preview-avatar">
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-          <div className="preview-row">
-            <span>Motif de consultation</span>
-            <strong>Réponse contextuelle reproductible</strong>
-          </div>
-          <div className="preview-row">
-            <span>Priorité</span>
-            <strong className="warm-text">À évaluer</strong>
-          </div>
-          <div className="preview-progress">
-            <span>
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </span>
-            <small>6 modules cliniques</small>
-          </div>
-          <div className="preview-stamp">
-            <Icon name="lock" size={14} />
-            Données confidentielles
-          </div>
-        </section>
-      </div>
-
-      <footer className="portal-footer">
-        <span>{appConfig.clinic.name}</span>
-        <span>·</span>
-        <span>{appConfig.clinic.tagline}</span>
-        <span className="footer-version">Interface de consultation v. 1.0</span>
-      </footer>
+    <main className="referral-cover">
+      <header className="document-heading"><span>DOSSIER DE RÉFÉRÉ</span><span>{appConfig.case.id}</span></header>
+      <div className="cover-recipient"><span>À l’attention de</span><strong>{appConfig.recipient.displayName || "La vétérinaire destinataire"}</strong>
+        <span>{appConfig.clinic.name} · {appConfig.clinic.location}</span></div>
+      <h1>Ratoncito</h1>
+      <p className="cover-species"><em>{appConfig.patient.species}</em> · mâle · {appConfig.patient.weight}</p>
+      <PatientPhoto />
+      <dl className="document-fields"><div><dt>Motif</dt><dd>Recherche de contact exclusive. Coopération dépendante d’un individu familier.</dd></div>
+        <div><dt>État général</dt><dd>Conservé. Difficulté à maintenir le repos en séparation.</dd></div>
+        <div><dt>Pièce jointe</dt><dd>Petit présent retrouvé avec le patient. Destinataire unique.</dd></div></dl>
+      <button className="primary-button" onClick={onOpen}>Examiner le dossier<Icon name="arrow" size={17} /></button>
+      <footer className="document-footer">{appConfig.case.date} · Observation individuelle</footer>
     </main>
   );
 }
 
-function ClosureScreen() {
-  return (
-    <main className="closure-shell">
-      <div className="closure-card">
-        <div className="closure-mark">
-          <LogoMark large />
-        </div>
-        <p className="eyebrow">Évaluation terminée</p>
-        <h1>Dossier validé</h1>
-        <div className="closure-rule" />
-        <p className="closure-link">Lien maintenu</p>
-        <p className="closure-meta">
-          {appConfig.case.id} <span>·</span> {appConfig.clinic.service}
-        </p>
-      </div>
-      <p className="closure-footer">
-        {appConfig.clinic.shortName} · {appConfig.clinic.name}
-      </p>
-    </main>
-  );
+function ClosureScreen({ adopted, onReconsider }: { adopted: boolean; onReconsider: () => void }) {
+  return <main className="referral-cover closure-document">
+    <header className="document-heading"><span>CLÔTURE DU DOSSIER</span><span>{appConfig.case.id}</span></header>
+    <p className="eyebrow">{adopted ? "Contrat d’adoption" : "Épilogue fictif"}</p>
+    <h1 id="closure-title" tabIndex={-1}>{adopted ? "Adoption acceptée." : "Décès de Ratoncito."}</h1>
+    {adopted ? <>
+      <dl className="document-fields"><div><dt>Adoptante</dt><dd>{appConfig.recipient.displayName || "Vous"}</dd></div>
+        <div><dt>Évolution immédiate</dt><dd>Recherche terminée. Patient installé au contact.</dd></div>
+        <div><dt>Effets personnels</dt><dd>Un petit cadeau, remis à son unique destinataire.</dd></div></dl>
+      <p className="closure-note">Le raton a trouvé sa place.</p>
+    </> : <><p>Adoption refusée. Dossier classé.</p>
+      <button className="primary-button" onClick={onReconsider}>Réexaminer la demande</button></>}
+    <footer className="document-footer">Fiction personnelle · Document sans valeur médicale ou contractuelle.</footer>
+  </main>;
 }
 
 function App() {
@@ -451,12 +242,14 @@ function App() {
   const [activeSection, setActiveSection] = useState<SectionId>("overview");
   const [visited, setVisited] = useState<SectionId[]>([]);
   const [openedPanels, setOpenedPanels] = useState<string[]>([]);
+  const [expandedPanel, setExpandedPanel] = useState<string | null>(null);
   const [selectedStimulus, setSelectedStimulus] = useState("individual-a");
   const [hypothesisState, setHypothesisState] = useState<
     Record<string, HypothesisState>
   >({});
   const [revealStage, setRevealStage] = useState<RevealStage>("idle");
   const [closed, setClosed] = useState(false);
+  const [adopted, setAdopted] = useState(false);
 
   const recipientName = appConfig.recipient.displayName.trim();
   const visitedCount = new Set(visited).size;
@@ -468,28 +261,22 @@ function App() {
     classifiedCount,
     hypotheses.length
   );
-  const progress = getProgressPercent(visited);
 
   useEffect(() => {
-    const nextStage: Partial<Record<RevealStage, RevealStage>> = {
-      preparing: "variable",
-      variable: "identifying",
-      identifying: "revealed"
-    };
-    const delays: Partial<Record<RevealStage, number>> = {
-      preparing: 750,
-      variable: 1150,
-      identifying: 1450
-    };
-    const next = nextStage[revealStage];
-    const delay = delays[revealStage];
+    if (started) {
+      document.getElementById(closed ? "closure-title" : "main-content")?.focus({ preventScroll: true });
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth"
+      });
+    }
+  }, [started, activeSection, closed]);
 
-    if (!next || !delay) {
+  useEffect(() => {
+    if (revealStage !== "preparing") {
       return;
     }
-
-    const timer = window.setTimeout(() => setRevealStage(next), delay);
-
+    const timer = window.setTimeout(() => setRevealStage("revealed"), 350);
     return () => window.clearTimeout(timer);
   }, [revealStage]);
 
@@ -503,11 +290,11 @@ function App() {
     if (section === "synthesis" && !readyForSynthesis) {
       return;
     }
+    if (section === "synthesis" && revealStage === "idle") {
+      setRevealStage(window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "revealed" : "preparing");
+    }
     setActiveSection(section);
     markVisited(section);
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
   }
 
   function openDossier() {
@@ -516,8 +303,9 @@ function App() {
   }
 
   function togglePanel(id: string) {
+    setExpandedPanel((current) => current === id ? null : id);
     setOpenedPanels((current) =>
-      current.includes(id) ? current.filter((item) => item !== id) : [...current, id]
+      current.includes(id) ? current : [...current, id]
     );
   }
 
@@ -529,12 +317,7 @@ function App() {
     if (!readyForSynthesis) {
       return;
     }
-    setRevealStage("preparing");
-    setActiveSection("synthesis");
-    markVisited("synthesis");
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    navigate("synthesis");
   }
 
   if (!started) {
@@ -542,147 +325,23 @@ function App() {
   }
 
   if (closed) {
-    return <ClosureScreen />;
+    return <ClosureScreen adopted={adopted} onReconsider={() => setClosed(false)} />;
   }
 
   function renderOverview() {
-    return (
-      <section className="page-section">
-        <SectionIntro
-          eyebrow={sectionMeta.overview.eyebrow}
-          title="Ratoncito"
-          description="Vue d’ensemble du dossier avant ouverture du raisonnement clinique."
-        >
-          <StatusPill>Évaluation active</StatusPill>
-        </SectionIntro>
-
-        <div className="overview-grid">
-          <article className="card patient-hero-card">
-            <div className="patient-hero-meta">
-              <div>
-                <p className="card-eyebrow">PATIENT NAC · {appConfig.case.id}</p>
-                <span className="patient-referral">Dossier référé</span>
-              </div>
-              <span className="record-symbol">R</span>
-            </div>
-            <div className="patient-hero-body">
-              <div className="patient-visual">
-                <div className="patient-visual-grid" />
-                <RatIllustration />
-                <span className="visual-caption">OBSERVATION CLINIQUE</span>
-              </div>
-              <div className="patient-identity">
-                <h2>{appConfig.patient.name}</h2>
-                <p className="patient-species">
-                  <em>{appConfig.patient.species}</em>
-                  <span>·</span>
-                  {appConfig.patient.sex}
-                </p>
-                <div className="patient-fields">
-                  <Field label="Âge" value={appConfig.patient.age} />
-                  <Field label="Poids" value={appConfig.patient.weight} />
-                  <Field label="État corporel" value={appConfig.patient.bodyCondition} />
-                  <Field label="Service" value="NAC · cas complexes" muted />
-                </div>
-              </div>
-            </div>
-            <div className="patient-hero-footer">
-              <span>
-                <Icon name="calendar" size={15} />
-                {appConfig.case.date}
-              </span>
-              <span>
-                <Icon name="user" size={15} />
-                {appConfig.case.attendingClinician}
-              </span>
-            </div>
-          </article>
-
-          <article className="card signal-card">
-            <div className="card-heading">
-              <div>
-                <p className="card-eyebrow">SIGNAL CLINIQUE</p>
-                <h2>Réponse contextuelle</h2>
-              </div>
-              <span className="icon-badge icon-badge-teal">
-                <Icon name="pulse" size={18} />
-              </span>
-            </div>
-            <p className="card-lede">
-              Variation physiologique observée lors d’un stimulus spécifique.
-            </p>
-            <div className="chart-wrap">
-              <Sparkline />
-              <div className="chart-axis">
-                <span>Repos</span>
-                <span>Exposition</span>
-                <span>Récupération</span>
-              </div>
-            </div>
-            <div className="signal-reading">
-              <div>
-                <span className="reading-value">+22<small>%</small></span>
-                <span className="reading-label">variation relative maximale</span>
-              </div>
-              <StatusPill tone="warm">À caractériser</StatusPill>
-            </div>
-          </article>
-
-          <article className="card referral-card">
-            <div className="card-heading">
-              <div>
-                <p className="card-eyebrow">MOTIF DE RÉFÉRÉ</p>
-                <h2>Problème à résoudre</h2>
-              </div>
-              <span className="icon-badge icon-badge-sand">
-                <Icon name="note" size={18} />
-              </span>
-            </div>
-            <p className="referral-question">
-              Modification comportementale persistante avec réponse physiologique
-              contextuelle reproductible.
-            </p>
-            <div className="tag-row">
-              <span className="tag">Persistant</span>
-              <span className="tag">Sélectif</span>
-              <span className="tag">Non aigu</span>
-            </div>
-            <button className="text-button" onClick={() => navigate("history")}>
-              Lire l’anamnèse
-              <Icon name="arrow" size={16} />
-            </button>
-          </article>
-
-          <article className="card case-note-card">
-            <div className="case-note-top">
-              <span className="note-pin">
-                <Icon name="spark" size={14} />
-              </span>
-              <span className="card-eyebrow">NOTE DE RÉFÉRENCE</span>
-            </div>
-            <p>
-              « La réponse semble liée à un facteur constant. Le patient reste
-              parfaitement fonctionnel en dehors des épisodes. »
-            </p>
-            <span className="note-signature">— Dossier transmis au service NAC</span>
-          </article>
-        </div>
-
-        <div className="next-step-bar">
-          <div>
-            <span className="step-index">01</span>
-            <div>
-              <p className="card-eyebrow">PROCHAINE ÉTAPE</p>
-              <strong>Reconstituer l’évolution du phénomène</strong>
-            </div>
-          </div>
-          <button className="primary-button" onClick={() => navigate("history")}>
-            Ouvrir l’anamnèse
-            <Icon name="arrow" size={17} />
-          </button>
-        </div>
-      </section>
-    );
+    return <section className="page-section">
+      <SectionIntro eyebrow="Identification" title="Ratoncito" description="" />
+      <article className="card patient-record"><PatientPhoto />
+        <div className="record-content"><dl className="document-fields">
+          <div><dt>Espèce</dt><dd><em>{appConfig.patient.species}</em> · {appConfig.patient.sex}</dd></div>
+          <div><dt>Signalement</dt><dd>Pelage brun. {appConfig.patient.age}. {appConfig.patient.weight}. État corporel : {appConfig.patient.bodyCondition}.</dd></div>
+          <div><dt>Nom d’usage</dt><dd>« Mon raton ». Orientation immédiate à cet appel par l’individu familier.</dd></div>
+          <div><dt>Admission</dt><dd>Patient retrouvé avec un petit cadeau. Conservation du paquet à proximité, sans comportement alimentaire associé.</dd></div>
+          <div><dt>Motif de référé</dt><dd>Repos, prise alimentaire et coopération nettement améliorés auprès d’un seul individu. Recherche de proximité persistante en son absence.</dd></div>
+        </dl></div>
+      </article>
+      <div className="next-step-bar"><button className="primary-button" onClick={() => navigate("history")}>Anamnèse<Icon name="arrow" size={17} /></button></div>
+    </section>;
   }
 
   function renderHistory() {
@@ -691,7 +350,7 @@ function App() {
         <SectionIntro
           eyebrow={sectionMeta.history.eyebrow}
           title="Anamnèse"
-          description="Historique structuré rapporté avant l’évaluation spécialisée."
+          description=""
         >
           <span className="section-counter">4 éléments documentés</span>
         </SectionIntro>
@@ -734,45 +393,9 @@ function App() {
             </div>
           </article>
 
-          <aside className="history-aside">
-            <article className="card quote-card">
-              <span className="quote-mark">“</span>
-              <p>
-                Le rapprochement avec le facteur concerné semble modifier
-                immédiatement l’état de vigilance.
-              </p>
-              <div className="quote-footer">
-                <span className="avatar-initials">P</span>
-                <span>
-                  <strong>Propriétaire</strong>
-                  <small>Entretien de référé</small>
-                </span>
-              </div>
-            </article>
-            <article className="card interpretation-card">
-              <div className="interpretation-heading">
-                <span className="icon-badge icon-badge-teal">
-                  <Icon name="search" size={17} />
-                </span>
-                <p className="card-eyebrow">LECTURE INITIALE</p>
-              </div>
-              <h3>Un phénomène surtout contextuel</h3>
-              <p>
-                L’absence d’altération générale oriente vers une observation
-                comparative avant toute hypothèse organique lourde.
-              </p>
-            </article>
-          </aside>
         </div>
 
         <div className="next-step-bar">
-          <div>
-            <span className="step-index">02</span>
-            <div>
-              <p className="card-eyebrow">PROCHAINE ÉTAPE</p>
-              <strong>Vérifier l’état général et les constantes</strong>
-            </div>
-          </div>
           <button className="primary-button" onClick={() => navigate("examination")}>
             Passer à l’examen
             <Icon name="arrow" size={17} />
@@ -788,7 +411,7 @@ function App() {
         <SectionIntro
           eyebrow={sectionMeta.examination.eyebrow}
           title="Examen clinique"
-          description="Observation non contrainte, puis examen général et comportemental."
+          description="Observation avant contention."
         >
           <StatusPill>État général conservé</StatusPill>
         </SectionIntro>
@@ -805,31 +428,24 @@ function App() {
               </span>
             </div>
             <p>
-              Réactif, manipulable, sans signe de détresse ni altération manifeste
-              de la locomotion. Le comportement est d’abord observé sans contention.
+              Éveillé, locomotion conservée. Examen toléré brièvement avec un tiers ;
+              maintien volontaire et coopération prolongée au contact de l’individu familier.
             </p>
             <div className="observation-status">
               <span className="status-check">
                 <Icon name="check" size={14} />
               </span>
               <span>
-                <strong>Examen non contributif au repos</strong>
-                <small>Une variation apparaît uniquement en contexte ciblé.</small>
+                <strong>Contact volontaire</strong>
+                <small>Relâchement postural, exploration interrompue, repos maintenu.</small>
               </span>
             </div>
           </article>
-          <article className="card contextual-card">
-            <div className="contextual-label">
-              <span className="pulse-orb" />
-              Variation contextuelle
-            </div>
-            <div className="contextual-value">+22<span>%</span></div>
-            <p>variation relative maximale de la fréquence cardiaque lors de l’exposition</p>
-            <div className="contextual-bar">
-              <span />
-            </div>
-            <span className="contextual-foot">Mesure d’appoint · à interpréter avec le contexte</span>
-          </article>
+          <figure className="card contact-observation">
+            <img className="patient-photo" src={import.meta.env.BASE_URL + "images/ratoncito-contact.jpg"}
+              alt="Ratoncito au repos, la tête au contact d’une main détendue." width="1536" height="1024" loading="lazy" />
+            <figcaption>Observation au contact · relâchement postural.</figcaption>
+          </figure>
         </div>
 
         <article className="card exam-table-card">
@@ -881,13 +497,6 @@ function App() {
         </article>
 
         <div className="next-step-bar">
-          <div>
-            <span className="step-index">03</span>
-            <div>
-              <p className="card-eyebrow">PROCHAINE ÉTAPE</p>
-              <strong>Comparer les examens disponibles</strong>
-            </div>
-          </div>
           <button className="primary-button" onClick={() => navigate("diagnostics")}>
             Consulter les examens
             <Icon name="arrow" size={17} />
@@ -914,14 +523,25 @@ function App() {
             </div>
             <span className="method-badge">
               <Icon name="shield" size={14} />
-              Répétition x3
+              6 présentations / condition
             </span>
           </div>
           <p className="panel-body-intro">
-            Les conditions non spécifiques déclenchent des réponses faibles à
-            modérées. Sélectionnez une ligne pour examiner la dynamique observée.
+            Même environnement, mêmes tâches ; seul l’intervenant varie.
           </p>
-          <div className="stimulus-list" role="list">
+          <div className="comparison-table-wrap">
+            <table className="comparison-table"><caption>Coopération observée · 6 présentations</caption>
+              <thead><tr><th>Tâche</th><th>Opérateur témoin</th><th>Individu A</th></tr></thead>
+              <tbody>
+                <tr><th>Réponse à l’appel</th><td>1 / 6</td><td>6 / 6</td></tr>
+                <tr><th>Maintien au contact</th><td>0 / 6</td><td>6 / 6</td></tr>
+                <tr><th>Prise du repas proposé</th><td>2 / 6</td><td>6 / 6</td></tr>
+                <tr><th>Repos sans contrôle de la sortie</th><td>0 / 6</td><td>6 / 6</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="panel-body-intro">Rire caractéristique, dit « de sorcière » : orientation immédiate. Odeur familière : recherche de la source, puis maintien à proximité.</p>
+          <div className="stimulus-list" role="group" aria-label="Conditions d’exposition">
             {stimulusRows.map((row) => (
               <button
                 aria-pressed={row.id === selectedStimulus}
@@ -932,7 +552,6 @@ function App() {
                 }
                 key={row.id}
                 onClick={() => setSelectedStimulus(row.id)}
-                role="listitem"
               >
                 <span className="stimulus-indicator" />
                 <span className="stimulus-main">
@@ -944,7 +563,7 @@ function App() {
               </button>
             ))}
           </div>
-          <div className="stimulus-detail">
+          <div className="stimulus-detail" aria-live="polite">
             <div className="stimulus-detail-header">
               <div>
                 <span className="card-eyebrow">LECTURE DU SIGNAL</span>
@@ -1017,7 +636,6 @@ function App() {
               </span>
               <strong>Surveillance clinique et comparaison comportementale</strong>
             </div>
-            <p className="panel-footnote">{panel.note}</p>
           </div>
         </div>
       );
@@ -1073,31 +691,21 @@ function App() {
         <SectionIntro
           eyebrow={sectionMeta.diagnostics.eyebrow}
           title="Examens complémentaires"
-          description="Ouvrez chaque module pour comparer les pistes organiques et contextuelles."
+          description=""
         >
           <span className="section-counter">
             {openedPanels.length} / {diagnosticPanels.length} modules consultés
           </span>
         </SectionIntro>
 
-        <div className="diagnostic-notice">
-          <span className="notice-icon">
-            <Icon name="shield" size={17} />
-          </span>
-          <p>
-            <strong>Lecture progressive du dossier.</strong> Les trois premiers
-            modules évaluent les causes classiques. L’analyse comportementale
-            compare ensuite la sélectivité de la réponse.
-          </p>
-        </div>
-
         <div className="diagnostic-stack">
           {diagnosticPanels.map((panel, index) => {
-            const isOpen = openedPanels.includes(panel.id);
+            const isOpen = expandedPanel === panel.id;
             return (
               <article className={isOpen ? "card diagnostic-panel is-open" : "card diagnostic-panel"} key={panel.id}>
                 <button
                   aria-expanded={isOpen}
+                  aria-controls={"panel-" + panel.id}
                   className="diagnostic-panel-trigger"
                   onClick={() => togglePanel(panel.id)}
                 >
@@ -1108,7 +716,6 @@ function App() {
                   <span className="panel-title">
                     <span>{panel.eyebrow}</span>
                     <strong>{panel.title}</strong>
-                    <small>{panel.description}</small>
                   </span>
                   <span className="panel-status">
                     <StatusPill tone={panel.id === "behavior" ? "warm" : "muted"}>
@@ -1117,20 +724,15 @@ function App() {
                     <Icon name="chevron" size={18} />
                   </span>
                 </button>
-                {isOpen ? renderPanelBody(panel.id) : null}
+                <div id={"panel-" + panel.id} hidden={!isOpen}>
+                  {isOpen ? renderPanelBody(panel.id) : null}
+                </div>
               </article>
             );
           })}
         </div>
 
         <div className="next-step-bar">
-          <div>
-            <span className="step-index">04</span>
-            <div>
-              <p className="card-eyebrow">PROCHAINE ÉTAPE</p>
-              <strong>Évaluer les hypothèses différentielles</strong>
-            </div>
-          </div>
           <button className="primary-button" onClick={() => navigate("differentials")}>
             Ouvrir les hypothèses
             <Icon name="arrow" size={17} />
@@ -1146,7 +748,7 @@ function App() {
         <SectionIntro
           eyebrow={sectionMeta.differentials.eyebrow}
           title="Hypothèses diagnostiques"
-          description="Évaluation différentielle du tableau clinique à partir des données disponibles."
+          description=""
         >
           <span className="section-counter">
             {classifiedCount} / {hypotheses.length} classifiées
@@ -1189,18 +791,21 @@ function App() {
                   )}
                   <div className="decision-actions" role="group" aria-label={"Classer " + hypothesis.label}>
                     <button
+                      aria-pressed={state === "retain"}
                       className={state === "retain" ? "decision-button decision-button-selected" : "decision-button"}
                       onClick={() => classify(hypothesis.id, "retain")}
                     >
                       Retenir
                     </button>
                     <button
+                      aria-pressed={state === "uncertain"}
                       className={state === "uncertain" ? "decision-button decision-button-selected" : "decision-button"}
                       onClick={() => classify(hypothesis.id, "uncertain")}
                     >
                       Incertain
                     </button>
                     <button
+                      aria-pressed={state === "exclude"}
                       className={state === "exclude" ? "decision-button decision-button-selected" : "decision-button"}
                       onClick={() => classify(hypothesis.id, "exclude")}
                     >
@@ -1228,8 +833,8 @@ function App() {
               <p className="card-eyebrow">VALIDATION DE LA SYNTHÈSE</p>
               <strong>
                 {readyForSynthesis
-                  ? "Synthèse prête à être générée."
-                  : "Synthèse actuellement verrouillée."}
+                  ? "Compte rendu disponible."
+                  : "Évaluation incomplète."}
               </strong>
               <small>
                 {diagnosticsComplete
@@ -1243,7 +848,7 @@ function App() {
             disabled={!readyForSynthesis}
             onClick={generateSynthesis}
           >
-            Générer la synthèse
+            Établir le compte rendu
             <Icon name="arrow" size={17} />
           </button>
         </div>
@@ -1252,146 +857,36 @@ function App() {
   }
 
   function renderSynthesis() {
-    const stage = revealStage === "idle" ? "preparing" : revealStage;
-    const associatedPhrase = recipientName
-      ? "à la présence de " + recipientName
-      : "à la présence du facteur associé";
-
-    return (
-      <section className="page-section synthesis-page">
-        <SectionIntro
-          eyebrow={sectionMeta.synthesis.eyebrow}
-          title="Synthèse clinique"
-          description="Génération du rapport d’évaluation à partir des éléments consultés."
-        >
-          <span className="section-counter">Analyse terminée</span>
-        </SectionIntro>
-
-        <div className="reveal-stage">
-          <div className="reveal-stage-line">
-            <span className={stage === "preparing" ? "stage-dot stage-dot-active" : "stage-dot stage-dot-done"} />
-            <span className={stage === "variable" ? "stage-dot stage-dot-active" : stage === "preparing" ? "stage-dot" : "stage-dot stage-dot-done"} />
-            <span className={stage === "identifying" ? "stage-dot stage-dot-active" : stage === "revealed" ? "stage-dot stage-dot-done" : "stage-dot"} />
-            <span className={stage === "revealed" ? "stage-dot stage-dot-active" : "stage-dot"} />
+    const isRevealed = revealStage === "revealed";
+    return <section className="page-section synthesis-page">
+      <SectionIntro eyebrow="Compte rendu" title="Synthèse & conduite à tenir" description="" />
+      {!isRevealed ? <div className="card report-pending" role="status">Établissement du compte rendu…</div> : <>
+        <article className="card clinical-report-card">
+          <div className="report-header"><div><p className="card-eyebrow">FACTEUR INDIVIDUEL IDENTIFIÉ</p>
+            <h2>{recipientName || "Vous"}</h2></div></div>
+          <div className="report-body">
+            <p>Orientation à votre voix et à votre odeur. Contact recherché dans 6 présentations sur 6. Repos obtenu à votre proximité ; vigilance reprise à votre départ.</p>
+            <p>Les conditions témoins ne reproduisent ni la coopération ni la durée d’apaisement. Le bilan disponible n’apporte pas d’explication organique à cette sélectivité.</p>
+            <div className="report-outcome"><div><span>Conclusion</span><strong>Attachement individuel marqué, avec recherche persistante de votre présence.</strong></div>
+              <div><span>Conduite retenue dans ce dossier</span><strong>Adoption par l’individu identifié. Les solutions de substitution sont restées insuffisantes.</strong></div></div>
           </div>
-          <div className="reveal-stage-labels">
-            <span>Données croisées</span>
-            <span>Variable isolée</span>
-            <span>Identification</span>
-            <span>Rapport final</span>
-          </div>
-        </div>
-
-        <article
-          aria-live="polite"
-          className={"reveal-card reveal-card-" + stage}
-        >
-          <div className="reveal-card-top">
-            <span className="reveal-emblem">
-              <Icon name={stage === "preparing" ? "pulse" : "spark"} size={21} />
-            </span>
-            <span className="card-eyebrow">ANALYSE DE CORRÉLATION</span>
-            <span className="reveal-case">{appConfig.case.id}</span>
-          </div>
-          {stage === "preparing" ? (
-            <div className="reveal-preparing">
-              <span className="loader-ring" />
-              <h2>Croisement des observations…</h2>
-              <p>Recherche de la variable commune aux épisodes documentés.</p>
-            </div>
-          ) : (
-            <div className="reveal-content">
-              <p className="reveal-label">Variable commune retrouvée dans l’ensemble des épisodes</p>
-              <div className="variable-display">
-                <span className="variable-marker">A</span>
-                <strong>Individu A</strong>
-                <StatusPill tone="warm">Constante</StatusPill>
-              </div>
-              {stage === "identifying" ? (
-                <div className="identifying-line">
-                  <span className="loader-small" />
-                  Identification en cours…
-                </div>
-              ) : null}
-              {stage === "revealed" ? (
-                <div className="identified-person">
-                  <span>Individu A :</span>
-                  <strong>{recipientName || "[prénom à renseigner]"}</strong>
-                </div>
-              ) : null}
-            </div>
-          )}
         </article>
-
-        {stage === "revealed" ? (
-          <article className="card clinical-report-card">
-            <div className="report-header">
-              <div>
-                <p className="card-eyebrow">RAPPORT DE SYNTHÈSE · VALIDATION FINALE</p>
-                <h2>Conclusion de l’évaluation</h2>
-              </div>
-              <span className="report-stamp">
-                <Icon name="shield" size={15} />
-                Revu
-              </span>
-            </div>
-            <div className="report-body">
-              <p>
-                Les observations recueillies mettent en évidence une réponse
-                persistante, spécifique et hautement reproductible associée à un
-                seul facteur identifié.
-              </p>
-              <p>
-                Aucune anomalie organique, métabolique, neurologique ou toxique
-                susceptible d’expliquer l’ensemble du tableau n’a pu être mise en
-                évidence au terme des investigations disponibles.
-              </p>
-              <p>
-                Les hypothèses pathologiques classiques ne permettent pas
-                d’expliquer de manière satisfaisante le phénomène observé.
-              </p>
-              <p>
-                Le comportement du patient apparaît stable dans le temps, non
-                aléatoire, et étroitement associé <strong>{associatedPhrase}</strong>.
-              </p>
-              <div className="report-outcome">
-                <div>
-                  <span>Résultat</span>
-                  <strong>{appConfig.finalCopy.result}</strong>
-                </div>
-                <div>
-                  <span>Évolution attendue</span>
-                  <strong>{appConfig.finalCopy.expectedCourse}</strong>
-                </div>
-                <div>
-                  <span>Conduite recommandée</span>
-                  <strong>{appConfig.finalCopy.recommendation}</strong>
-                </div>
-              </div>
-            </div>
-            <div className="report-footer">
-              <span>
-                <Icon name="user" size={14} />
-                {appConfig.case.attendingClinician}
-              </span>
-              <span>
-                <Icon name="calendar" size={14} />
-                {appConfig.case.date}
-              </span>
-              <button className="primary-button" onClick={() => setClosed(true)}>
-                Clore le dossier
-                <Icon name="arrow" size={17} />
-              </button>
-            </div>
-          </article>
-        ) : (
-          <div className="synthesis-waiting">
-            <Icon name="lock" size={15} />
-            La synthèse finale sera disponible après l’identification de la variable.
-          </div>
-        )}
-      </section>
-    );
+        <article className="card adoption-contract">
+          <p className="card-eyebrow">ANNEXE · ACCORD DE PRISE EN CHARGE</p><h2>Contrat d’adoption</h2>
+          <dl className="document-fields"><div><dt>Patient</dt><dd>Ratoncito, dit « mon raton ».</dd></div>
+            <div><dt>Adoptante sollicitée</dt><dd>{recipientName || "Vous"}</dd></div>
+            <div><dt>Hébergement</dt><dd>À portée de contact. Place réservée pendant Hunter × Hunter.</dd></div>
+            <div><dt>Entretien</dt><dd>Repas réguliers, affection, écoute et contacts rapprochés. Sorties alimentaires au restaurant bien tolérées.</dd></div>
+            <div><dt>Besoins rapportés</dt><dd>Contacts affectifs rapprochés, coït (« pan pan »), besoin de téter et « bouche-à-bouche ». Modalités à convenir avec l’adoptante.</dd></div>
+            <div><dt>Contribution du patient</dt><dd>Massages, préparation des retrouvailles et remise du cadeau.</dd></div>
+          </dl>
+          <p className="contract-question">Acceptez-vous l’adoption de Ratoncito ?</p>
+          <div className="contract-actions"><button className="primary-button" onClick={() => { setAdopted(true); setClosed(true); }}>Oui, j’adopte Ratoncito</button>
+            <button className="secondary-button" onClick={() => { setAdopted(false); setClosed(true); }}>Non</button></div>
+          <p className="document-footer">Accord symbolique.</p>
+        </article>
+      </>}
+    </section>;
   }
 
   function renderActiveSection() {
@@ -1434,7 +929,7 @@ function App() {
           <span className="topbar-divider" />
           <span className="topbar-secure">
             <Icon name="shield" size={15} />
-            Session sécurisée
+            Observation individuelle
           </span>
         </div>
       </header>
@@ -1442,7 +937,7 @@ function App() {
       <div className="workspace">
         <aside className="sidebar">
           <div className="sidebar-heading">
-            <span>Parcours clinique</span>
+            <span>Pièces du dossier</span>
             <small>{visitedCount} / 6</small>
           </div>
           <nav aria-label="Sections du dossier" className="side-nav">
@@ -1484,34 +979,26 @@ function App() {
             })}
           </nav>
           <div className="sidebar-bottom">
-            <div className="progress-heading">
-              <span>Progression dossier</span>
-              <strong>{progress}%</strong>
-            </div>
-            <div className="progress-track">
-              <span style={{ width: progress + "%" }} />
-            </div>
-            <p>Les modules consultés restent accessibles à tout moment.</p>
             <div className="sidebar-case">
               <span className="sidebar-case-icon">
                 <Icon name="lock" size={14} />
               </span>
               <span>
-                <strong>Accès restreint</strong>
+                <strong>Dossier de référé</strong>
                 <small>{appConfig.case.date}</small>
               </span>
             </div>
           </div>
         </aside>
 
-        <main className="main-content" id="main-content">
+        <main className="main-content" id="main-content" tabIndex={-1}>
           <div className="content-context">
             <span>
               {appConfig.clinic.name} <b>/</b> {appConfig.clinic.service}
             </span>
             <span>
               <Icon name="shield" size={13} />
-              Dossier confidentiel
+              Destinataire unique
             </span>
           </div>
           {renderActiveSection()}
