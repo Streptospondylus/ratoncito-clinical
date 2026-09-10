@@ -29,16 +29,19 @@ export function getProgressPercent(visited: SectionId[]): number {
   return Math.round((new Set(visited).size / sectionIds.length) * 100);
 }
 
-export function isReadyForSynthesis(
-  openedDiagnosticPanels: number,
-  totalDiagnosticPanels: number,
-  classifiedHypotheses: number,
-  totalHypotheses: number
-): boolean {
-  return (
-    openedDiagnosticPanels >= totalDiagnosticPanels &&
-    classifiedHypotheses >= totalHypotheses
-  );
+export function getReviewStatus(
+  openedPanels: string[],
+  panelIds: string[],
+  classifiedHypotheses: string[],
+  hypothesisIds: string[]
+) {
+  const missingPanels = panelIds.filter((id) => !openedPanels.includes(id));
+  const missingHypotheses = hypothesisIds.filter((id) => !classifiedHypotheses.includes(id));
+  return {
+    missingPanels,
+    missingHypotheses,
+    ready: missingPanels.length === 0 && missingHypotheses.length === 0
+  };
 }
 
 export function getHypothesisFeedback(

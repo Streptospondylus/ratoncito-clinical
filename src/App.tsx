@@ -11,7 +11,7 @@ import {
 } from "./data";
 import {
   getHypothesisFeedback,
-  isReadyForSynthesis,
+  getReviewStatus,
   type HypothesisState,
   type RevealStage,
   type SectionId
@@ -253,24 +253,33 @@ function App() {
 
   const recipientName = appConfig.recipient.displayName.trim();
   const visitedCount = new Set(visited).size;
-  const diagnosticsComplete = openedPanels.length === diagnosticPanels.length;
   const classifiedCount = Object.keys(hypothesisState).length;
-  const readyForSynthesis = isReadyForSynthesis(
-    openedPanels.length,
-    diagnosticPanels.length,
-    classifiedCount,
-    hypotheses.length
+  const review = getReviewStatus(
+    openedPanels,
+    diagnosticPanels.map((panel) => panel.id),
+    Object.keys(hypothesisState),
+    hypotheses.map((hypothesis) => hypothesis.id)
   );
+  const readyForSynthesis = review.ready;
+  const nextPanel = diagnosticPanels.find((panel) => panel.id === review.missingPanels[0]);
 
   useEffect(() => {
     if (started) {
       document.getElementById(closed ? "closure-title" : "main-content")?.focus({ preventScroll: true });
       window.scrollTo({
         top: 0,
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth"
+        behavior: "instant"
       });
     }
   }, [started, activeSection, closed]);
+
+  useEffect(() => {
+    if (activeSection === "diagnostics" && expandedPanel) {
+      const trigger = document.getElementById("panel-trigger-" + expandedPanel);
+      trigger?.focus({ preventScroll: true });
+      trigger?.scrollIntoView({ block: "start", behavior: "instant" });
+    }
+  }, [activeSection, expandedPanel]);
 
   useEffect(() => {
     if (revealStage !== "preparing") {
@@ -318,6 +327,20 @@ function App() {
       return;
     }
     navigate("synthesis");
+  }
+
+  function resumeReview() {
+    if (nextPanel) {
+      navigate("diagnostics");
+      setExpandedPanel(nextPanel.id);
+      setOpenedPanels((current) => current.includes(nextPanel.id) ? current : [...current, nextPanel.id]);
+    } else if (review.missingHypotheses.length) {
+      const card = document.getElementById("hypothesis-" + review.missingHypotheses[0]);
+      card?.focus({ preventScroll: true });
+      card?.scrollIntoView({ block: "start", behavior: "instant" });
+    } else {
+      generateSynthesis();
+    }
   }
 
   if (!started) {
@@ -704,6 +727,7 @@ function App() {
             return (
               <article className={isOpen ? "card diagnostic-panel is-open" : "card diagnostic-panel"} key={panel.id}>
                 <button
+                  id={"panel-trigger-" + panel.id}
                   aria-expanded={isOpen}
                   aria-controls={"panel-" + panel.id}
                   className="diagnostic-panel-trigger"
@@ -716,6 +740,7 @@ function App() {
                   <span className="panel-title">
                     <span>{panel.eyebrow}</span>
                     <strong>{panel.title}</strong>
+                    <span className="panel-review-state">{openedPanels.includes(panel.id) ? "Consulté" : "À consulter"}</span>
                   </span>
                   <span className="panel-status">
                     <StatusPill tone={panel.id === "behavior" ? "warm" : "muted"}>
@@ -733,8 +758,8 @@ function App() {
         </div>
 
         <div className="next-step-bar">
-          <button className="primary-button" onClick={() => navigate("differentials")}>
-            Ouvrir les hypothèses
+          <button className="primary-button" onClick={nextPanel ? resumeReview : readyForSynthesis ? generateSynthesis : () => navigate("differentials")}>
+            {nextPanel ? "Consulter : " + nextPanel.title : readyForSynthesis ? "Établir le compte rendu" : "Classer les hypothèses"}
             <Icon name="arrow" size={17} />
           </button>
         </div>
@@ -755,6 +780,10 @@ function App() {
           </span>
         </SectionIntro>
 
+        {nextPanel ? <div className="review-notice">
+          <p>Examens à consulter : {diagnosticPanels.filter((panel) => review.missingPanels.includes(panel.id)).map((panel) => panel.title).join(", ")}.</p>
+          <button className="text-button" onClick={resumeReview}>Reprendre les examens<Icon name="arrow" size={16} /></button>
+        </div> : null}
         <div className="hypothesis-list">
           <div aria-hidden="true" className="hypothesis-list-header">
             <span>Réf.</span>
@@ -773,6 +802,8 @@ function App() {
                   (isCorrect ? " hypothesis-card-correct" : "")
                 }
                 key={hypothesis.id}
+                id={"hypothesis-" + hypothesis.id}
+                tabIndex={-1}
               >
                 <span className="hypothesis-index">0{index + 1}</span>
                 <div className="hypothesis-name">
@@ -837,18 +868,15 @@ function App() {
                   : "Évaluation incomplète."}
               </strong>
               <small>
-                {diagnosticsComplete
-                  ? `${classifiedCount} / ${hypotheses.length} hypothèses évaluées.`
-                  : "Examens complémentaires encore incomplets."}
+                {`${openedPanels.length} / ${diagnosticPanels.length} examens consultés · ${classifiedCount} / ${hypotheses.length} hypothèses classées.`}
               </small>
             </div>
           </div>
           <button
             className="primary-button"
-            disabled={!readyForSynthesis}
-            onClick={generateSynthesis}
+            onClick={resumeReview}
           >
-            Établir le compte rendu
+            {nextPanel ? "Reprendre les examens" : review.missingHypotheses.length ? "Compléter les classifications" : "Établir le compte rendu"}
             <Icon name="arrow" size={17} />
           </button>
         </div>

@@ -3829,6 +3829,11 @@ a:focus-visible {
 }
 
 /* Individual referral document */
+.diagnostic-panel-trigger, .hypothesis-card { scroll-margin-top: 85px; }
+.panel-title > .panel-review-state { font-size: 11px; letter-spacing: 0; text-transform: none; margin-top: 5px; color: var(--ink-soft); }
+.review-notice { padding: 15px 18px; margin-bottom: 20px; border: 1px solid var(--line-strong); background: white; }
+.review-notice p { font-size: 13px; line-height: 1.6; margin: 0 0 8px; }
+.decision-button { min-height: 44px; }
 .referral-cover {
   max-width: 760px;
   margin: 40px auto;
