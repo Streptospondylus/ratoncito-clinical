@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="853" height="1844" viewBox="0 0 853 1844">
+  <rect width="853" height="1844" fill="#fbfaf6"/>
+  <style>
+    .sans{font-family:Arial,Helvetica,sans-serif;fill:#163a43}
+    .serif{font-family:Georgia,'Times New Roman',serif;fill:#123942}
+    .muted{fill:#60777d}
+    .caps{letter-spacing:5px;font-weight:700}
+  </style>
+  <text x="64" y="74" class="sans caps" font-size="24">CLÔTURE DU DOSSIER</text>
+  <text x="790" y="74" class="sans" text-anchor="end" font-size="24" letter-spacing="2">NAC-26-0911-07</text>
+  <line x1="63" y1="121" x2="790" y2="121" stroke="#173c43" stroke-width="2"/>
+
+  <text x="426.5" y="267" class="sans muted" text-anchor="middle" font-size="25" letter-spacing="5">Compte rendu d’incident</text>
+
+  <text x="426.5" y="435" class="serif" text-anchor="middle" font-size="89">Décès de</text>
+  <text x="426.5" y="560" class="serif" text-anchor="middle" font-size="89">Ratoncito.</text>
+  <line x1="372" y1="643" x2="481" y2="643" stroke="#9db2ad" stroke-width="2"/>
+
+  <text x="426.5" y="742" class="sans muted" text-anchor="middle" font-size="28">À la sortie de la clinique, Ratoncito s’est jeté</text>
+  <text x="426.5" y="787" class="sans muted" text-anchor="middle" font-size="28">de lui-même dans la gueule d’un chat.</text>
+  <text x="426.5" y="832" class="sans muted" text-anchor="middle" font-size="28">Aucune intervention n’a pu être réalisée.</text>
+
+  <rect x="63" y="947" width="727" height="249" rx="8" fill="#fdfcf9" stroke="#dbe1dd"/>
+  <line x1="426.5" y1="993" x2="426.5" y2="1149" stroke="#bcc9c5"/>
+  <text x="239" y="1037" class="sans caps" text-anchor="middle" font-size="20">ISSUE</text>
+  <text x="239" y="1115" class="serif" text-anchor="middle" font-size="58">Décès</text>
+  <text x="615" y="1037" class="sans caps" text-anchor="middle" font-size="20">DOSSIER</text>
+  <text x="615" y="1115" class="serif" text-anchor="middle" font-size="58">Clos</text>
+
+  <line x1="373" y1="1276" x2="480" y2="1276" stroke="#9db2ad" stroke-width="2"/>
+  <text x="426.5" y="1367" class="sans caps" text-anchor="middle" font-size="20">DATE DE CLÔTURE</text>
+  <text x="426.5" y="1441" class="serif" text-anchor="middle" font-size="49">11 septembre 2026</text>
+
+  <line x1="373" y1="1614" x2="480" y2="1614" stroke="#9db2ad" stroke-width="2"/>
+  <text x="426.5" y="1708" class="sans" text-anchor="middle" font-size="28" text-decoration="underline">Retour au dossier</text>
+</svg>
