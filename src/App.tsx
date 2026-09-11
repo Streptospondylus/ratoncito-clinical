@@ -379,16 +379,31 @@ function App() {
   }
 
   function renderOverview() {
-    return <section className="page-section">
-      <SectionIntro eyebrow="Identification" title="Ratoncito" description="" />
-      <article className="card patient-record"><PatientPhoto />
-        <div className="record-content"><dl className="document-fields">
-          <div><dt>Espèce</dt><dd><em>{appConfig.patient.species}</em> · {appConfig.patient.sex}</dd></div>
-          <div><dt>Signalement</dt><dd>Pelage brun. {appConfig.patient.age}. {appConfig.patient.weight}. État corporel : {appConfig.patient.bodyCondition}.</dd></div>
-          <div><dt>Nom d’usage</dt><dd>« Mon raton ». Orientation immédiate à cet appel par l’individu familier.</dd></div>
-          <div><dt>Admission</dt><dd>Patient retrouvé avec un petit cadeau. Conservation du paquet à proximité, sans comportement alimentaire associé.</dd></div>
-          <div><dt>Motif de référé</dt><dd>Repos, prise alimentaire et coopération nettement améliorés auprès d’un seul individu. Recherche de proximité persistante en son absence.</dd></div>
-        </dl></div>
+    return <section className="page-section overview-page">
+      <SectionIntro eyebrow="Accueil du dossier" title="Dossier patient" description="Identification et motif de référé" />
+      <article className="card patient-record">
+        <header className="patient-record-header">
+          <div><p className="card-eyebrow">PATIENT NAC · CONSULTATION INDIVIDUELLE</p><h2>Ratoncito</h2><p>Nom d’usage : « mon raton »</p></div>
+          <div className="patient-record-state"><span>Dossier actif</span><small>{appConfig.case.id}</small></div>
+        </header>
+        <figure className="patient-record-visual"><PatientPhoto /><figcaption>Photographie d’admission · Patient éveillé, état général conservé</figcaption></figure>
+        <div className="record-content">
+          <dl className="patient-vitals" aria-label="Signalement du patient">
+            <div><dt>Espèce</dt><dd><em>{appConfig.patient.species}</em></dd></div>
+            <div><dt>Sexe</dt><dd>{appConfig.patient.sex}</dd></div>
+            <div><dt>Âge</dt><dd>{appConfig.patient.age}</dd></div>
+            <div><dt>Poids</dt><dd>{appConfig.patient.weight}</dd></div>
+            <div><dt>État corporel</dt><dd>{appConfig.patient.bodyCondition}</dd></div>
+          </dl>
+          <section className="patient-reason" aria-labelledby="patient-reason-title">
+            <div><span>Motif de référé</span><h3 id="patient-reason-title">Recherche de proximité sélective</h3></div>
+            <p>Repos, prise alimentaire et coopération nettement améliorés auprès d’un seul individu. Recherche de proximité persistante en son absence.</p>
+          </section>
+          <dl className="patient-context">
+            <div><dt>À l’admission</dt><dd>Patient retrouvé avec un petit cadeau. Conservation du paquet à proximité, sans comportement alimentaire associé.</dd></div>
+            <div><dt>Repère rapporté</dt><dd>Orientation immédiate à l’appel « mon raton » par l’individu familier.</dd></div>
+          </dl>
+        </div>
       </article>
       <div className="next-step-bar"><button className="primary-button" onClick={() => navigate("history")}>Anamnèse<Icon name="arrow" size={17} /></button></div>
     </section>;
@@ -901,7 +916,7 @@ function App() {
   function renderSynthesis() {
     const isRevealed = revealStage === "revealed";
     return <section className="page-section synthesis-page">
-      <SectionIntro eyebrow="Compte rendu" title="Synthèse & conduite à tenir" description="" />
+      <SectionIntro eyebrow="Compte rendu" title="Synthèse et conduite à tenir" description="" />
       {!isRevealed ? <div className="card report-pending" role="status">Établissement du compte rendu…</div> : <>
         <article className="card clinical-report-card">
           <header className="report-header">
@@ -912,76 +927,90 @@ function App() {
             <span className="report-reference">{appConfig.case.id}</span>
           </header>
           <div className="report-body report-sections">
-            <section className="report-section report-section-identity">
-              <h3>1 · Identification du patient</h3>
-              <dl className="report-facts">
-                <div><dt>Patient</dt><dd>Ratoncito, dit « mon raton »</dd></div>
-                <div><dt>Espèce</dt><dd><em>{appConfig.patient.species}</em> · {appConfig.patient.sex}</dd></div>
-                <div><dt>Signalement</dt><dd>{appConfig.patient.age} · {appConfig.patient.weight} · état corporel {appConfig.patient.bodyCondition}</dd></div>
-              </dl>
-            </section>
-            <section className="report-section">
-              <h3>2 · Motif de consultation</h3>
-              <p>Recherche persistante d’un contact exclusif, avec repos, prise alimentaire et coopération nettement améliorés auprès d’un seul individu familier.</p>
-            </section>
-            <section className="report-section">
-              <h3>3 · Anamnèse</h3>
-              <p>Attachement ancien et stable. Orientation immédiate à l’appel « mon raton », reconnaissance de la voix, du rire et de l’odeur. En séparation, contrôle du point de sortie et préparation du lieu de repos ; apaisement sans délai au rapprochement. Repas préparés et repos partagé devant Hunter × Hunter associés à une meilleure stabilité.</p>
-            </section>
-            <section className="report-section">
-              <h3>4 · Examen clinique</h3>
-              <dl className="report-facts report-facts-compact">
-                {examRows.map((row) => <div key={row.label}><dt>{row.label}</dt><dd><strong>{row.value}</strong><span>{row.interpretation}</span></dd></div>)}
-              </dl>
-            </section>
-            <section className="report-section">
-              <h3>5 · Hématologie</h3>
-              <p><strong>Profil non contributif.</strong> Hématocrite à 46 %, formule leucocytaire sans particularité et frottis sanguin non contributif. Aucune anomalie hématologique majeure mise en évidence.</p>
-            </section>
-            <section className="report-section">
-              <h3>6 · Biochimie</h3>
-              <dl className="report-lab-grid">
-                <div><dt>Glucose</dt><dd>8,9 mmol/L</dd></div><div><dt>Urée</dt><dd>4,1 mmol/L</dd></div>
-                <div><dt>Créatinine</dt><dd>31 µmol/L</dd></div><div><dt>ALT</dt><dd>61 UI/L</dd></div>
-                <div><dt>Protéines totales</dt><dd>72 g/L</dd></div><div><dt>Sodium</dt><dd>139 mmol/L</dd></div>
-              </dl>
-              <p className="report-note">Profil sans anomalie susceptible d’expliquer le tableau ; valeurs comparées avec prudence aux intervalles publiés chez le rat de compagnie.</p>
-            </section>
-            <section className="report-section">
-              <h3>7 · Exploration clinique</h3>
-              <p>Aucune atteinte organique objectivable. En l’absence de signe d’appel et compte tenu du caractère strictement contextuel, aucune indication d’imagerie avancée n’est retenue à ce stade.</p>
-            </section>
-            <section className="report-section">
-              <h3>8 · Analyse comportementale comparative</h3>
-              <div className="report-highlight">
-                <strong>Individu identifié : {recipientName || "vous"}</strong>
-                <span>Orientation 0,7 s · approche et contact 6/6 · coopération 6/6 · retour au calme &lt; 10 s au contact</span>
+            <section className="report-patient" aria-labelledby="report-patient-title">
+              <div className="report-patient-name">
+                <span id="report-patient-title">Patient</span>
+                <strong>Ratoncito</strong>
+                <small>dit « mon raton »</small>
               </div>
-              <p>La réponse forte, sélective et reproductible n’est reproduite ni par l’environnement familier, ni par l’alimentation, l’enrichissement, la manipulation neutre, un opérateur inconnu ou la condition contrôle.</p>
+              <dl className="report-patient-facts">
+                <div><dt>Espèce</dt><dd><em>{appConfig.patient.species}</em></dd></div>
+                <div><dt>Sexe</dt><dd>{appConfig.patient.sex}</dd></div>
+                <div><dt>Âge</dt><dd>{appConfig.patient.age}</dd></div>
+                <div><dt>Poids</dt><dd>{appConfig.patient.weight}</dd></div>
+                <div><dt>État corporel</dt><dd>{appConfig.patient.bodyCondition}</dd></div>
+              </dl>
             </section>
-            <section className="report-section">
-              <h3>9 · Hypothèses diagnostiques écartées</h3>
-              <p>Affection métabolique, cause neurologique, affection cardio-respiratoire primaire, processus douloureux et cause toxique : hypothèses non soutenues par l’examen, les analyses disponibles et la spécificité contextuelle.</p>
+
+            <section className="report-chapter report-opening">
+              <div className="report-chapter-heading"><span>01</span><h3>Motif et anamnèse</h3></div>
+              <div className="report-copy">
+                <p className="report-lead">Recherche persistante d’un contact exclusif, avec repos, prise alimentaire et coopération nettement améliorés auprès d’un seul individu familier.</p>
+                <p>Attachement ancien et stable. Orientation immédiate à l’appel « mon raton » et reconnaissance de la voix, du rire et de l’odeur. En séparation, contrôle du point de sortie et préparation du lieu de repos ; apaisement sans délai au rapprochement. Les repas préparés et le repos partagé devant Hunter × Hunter sont associés à une meilleure stabilité.</p>
+              </div>
             </section>
-            <section className="report-section">
-              <h3>10 · Hypothèse incertaine</h3>
-              <p><strong>Trouble comportemental primaire.</strong> Le caractère sélectif ne suffit pas à l’établir ; aucun retentissement durable sur l’alimentation ou l’activité n’est documenté.</p>
+
+            <section className="report-chapter">
+              <div className="report-chapter-heading"><span>02</span><h3>Constats cliniques</h3></div>
+              <div className="report-chapter-content">
+                <h4>Examen clinique</h4>
+                <dl className="report-exam-grid">
+                  {examRows.map((row) => <div key={row.label}><dt>{row.label}</dt><dd><strong>{row.value}</strong><span>{row.interpretation}</span></dd></div>)}
+                </dl>
+                <div className="report-subsection">
+                  <h4>Hématologie</h4>
+                  <p><strong>Profil non contributif.</strong> Hématocrite à 46 %, formule leucocytaire sans particularité et frottis sanguin non contributif. Aucune anomalie majeure mise en évidence.</p>
+                </div>
+                <div className="report-subsection">
+                  <h4>Biochimie</h4>
+                  <dl className="report-lab-grid">
+                    <div><dt>Glucose</dt><dd>8,9 mmol/L</dd></div><div><dt>Urée</dt><dd>4,1 mmol/L</dd></div>
+                    <div><dt>Créatinine</dt><dd>31 µmol/L</dd></div><div><dt>ALT</dt><dd>61 UI/L</dd></div>
+                    <div><dt>Protéines totales</dt><dd>72 g/L</dd></div><div><dt>Sodium</dt><dd>139 mmol/L</dd></div>
+                  </dl>
+                  <p className="report-note">Profil sans anomalie susceptible d’expliquer le tableau ; comparaison prudente aux intervalles publiés chez le rat de compagnie.</p>
+                </div>
+                <div className="report-clinical-note"><strong>Exploration clinique</strong><p>Aucune atteinte organique objectivable. Sans signe d’appel et devant le caractère strictement contextuel, aucune imagerie avancée n’est indiquée à ce stade.</p></div>
+              </div>
             </section>
-            <section className="report-section">
-              <h3>11 · Hypothèse retenue</h3>
-              <p><strong>Réponse spécifique à un stimulus identifié.</strong> Cette hypothèse rend compte de la sélectivité, de la répétabilité et de la résolution au rapprochement sans ajouter de maladie non documentée.</p>
+
+            <section className="report-chapter report-behaviour">
+              <div className="report-chapter-heading"><span>03</span><h3>Analyse comportementale comparative</h3></div>
+              <div className="report-chapter-content">
+                <p className="report-identified">Individu identifié <strong>{recipientName || "Vous"}</strong></p>
+                <dl className="report-metrics">
+                  <div><dt>Orientation</dt><dd>0,7 s</dd></div>
+                  <div><dt>Contact</dt><dd>6 / 6</dd></div>
+                  <div><dt>Coopération</dt><dd>6 / 6</dd></div>
+                  <div><dt>Retour au calme</dt><dd>&lt; 10 s</dd></div>
+                </dl>
+                <p>La réponse forte, sélective et reproductible n’est obtenue ni avec l’environnement familier, ni avec l’alimentation, l’enrichissement, une manipulation neutre, un opérateur inconnu ou la condition contrôle.</p>
+              </div>
             </section>
-            <section className="report-section">
-              <h3>12 · Discussion clinique</h3>
-              <p>La conservation de l’état général, l’absence de déficit focal et le bilan biologique rassurant rendent une origine organique peu probable. La concordance temporelle des réponses à la voix, à l’odeur et au contact, associée à l’échec des conditions de substitution, soutient un attachement individuel marqué.</p>
+
+            <section className="report-chapter">
+              <div className="report-chapter-heading"><span>04</span><h3>Raisonnement diagnostique</h3></div>
+              <div className="report-assessments">
+                <div className="report-assessment is-dismissed"><span>Écartées</span><p><strong>Origines organiques.</strong> Affection métabolique, cause neurologique, affection cardio-respiratoire primaire, processus douloureux et cause toxique non soutenus par le bilan.</p></div>
+                <div className="report-assessment is-uncertain"><span>Incertaine</span><p><strong>Trouble comportemental primaire.</strong> Le caractère sélectif ne suffit pas à l’établir ; aucun retentissement durable sur l’alimentation ou l’activité n’est documenté.</p></div>
+                <div className="report-assessment is-retained"><span>Retenue</span><p><strong>Réponse spécifique à un stimulus identifié.</strong> Elle explique la sélectivité, la répétabilité et la résolution au rapprochement sans supposer de maladie non documentée.</p></div>
+              </div>
+              <div className="report-discussion"><strong>Discussion clinique</strong><p>L’état général conservé, l’absence de déficit focal et le bilan biologique rassurant rendent une origine organique peu probable. La concordance des réponses à la voix, à l’odeur et au contact, associée à l’échec des substitutions, soutient un attachement individuel marqué.</p></div>
             </section>
-            <section className="report-section report-section-conclusion">
-              <h3>13 · Conclusion</h3>
-              <p>Attachement individuel marqué à {recipientName || "l’individu identifié"}, avec recherche persistante de présence et apaisement reproductible au contact.</p>
-            </section>
-            <section className="report-section report-section-plan">
-              <h3>14 · Conduite à tenir</h3>
-              <p>Prise en charge par l’individu identifié, maintien des repères familiers, des routines alimentaires, du repos partagé et des contacts relationnels essentiels. Surveillance de l’état général, de l’appétit et de toute modification comportementale.</p>
+
+            <section className="report-outcome">
+              <div className="report-conclusion">
+                <span>Conclusion clinique</span>
+                <p>Attachement individuel marqué à {recipientName || "l’individu identifié"}, avec recherche persistante de présence et apaisement reproductible au contact.</p>
+              </div>
+              <div className="report-plan">
+                <h3>Conduite à tenir</h3>
+                <ol>
+                  <li><span>01</span><p>Confier la prise en charge à l’individu identifié.</p></li>
+                  <li><span>02</span><p>Maintenir les repères familiers, les routines alimentaires, le repos partagé et les contacts relationnels essentiels.</p></li>
+                  <li><span>03</span><p>Surveiller l’état général, l’appétit et toute modification comportementale durable.</p></li>
+                </ol>
+              </div>
             </section>
           </div>
         </article>
