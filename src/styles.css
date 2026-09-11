@@ -4419,143 +4419,67 @@ a:focus-visible {
   }
 }
 
-/* Referral cover: an intimate case file rather than a standard clinic form */
-
-.referral-cover {
-  width: min(880px, calc(100% - 48px));
-  max-width: none;
-  margin: clamp(24px, 6vh, 68px) auto;
-  padding: clamp(30px, 5vw, 58px);
-  border: 1px solid var(--line-strong);
-  border-radius: 14px;
-  background: linear-gradient(145deg, #ffffff 0%, #fbfdfc 72%, #f4f8f5 100%);
-  box-shadow: 0 18px 44px rgba(32, 65, 62, 0.08);
+/* Referral cover: the editorial centrepiece of the clinical dossier. */
+.referral-cover { width:min(1080px,calc(100% - 56px)); margin:clamp(24px,5vh,54px) auto; overflow:hidden; border:1px solid #bdcbc6; border-radius:18px; background:#fbfaf6; box-shadow:0 24px 70px rgba(23,55,55,.12); }
+.referral-cover .document-heading { padding:19px clamp(24px,4vw,46px); border:0; background:#173f43; color:#d9e7e2; letter-spacing:.13em; }
+.referral-cover .document-heading span:last-child { color:#92aaa5; font-weight:500; }
+.referral-cover .cover-recipient { display:grid; grid-template-columns:max-content 1fr auto; align-items:baseline; gap:8px 20px; margin:0; padding:21px clamp(24px,4vw,46px); border-bottom:1px solid #d8e0dc; }
+.referral-cover .cover-recipient > span:first-child { color:#82938f; font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+.referral-cover .cover-recipient strong { color:var(--ink); font-family:Georgia,"Times New Roman",serif; font-size:20px; font-weight:400; letter-spacing:-.025em; }
+.referral-cover .cover-recipient > span:last-child { color:var(--ink-soft); font-size:12px; text-align:right; }
+.cover-patient { position:relative; margin:0; overflow:hidden; background:#173f43; }
+.referral-cover .cover-patient .patient-photo { min-height:360px; max-height:510px; aspect-ratio:2.15/1; object-position:50% 57%; filter:saturate(.88) contrast(1.02); }
+.cover-patient::after { position:absolute; inset:0; background:linear-gradient(90deg,rgba(10,35,38,.82),rgba(10,35,38,.36) 42%,transparent 72%),linear-gradient(0deg,rgba(10,30,31,.35),transparent 42%); content:""; }
+.cover-patient figcaption { position:absolute; z-index:1; top:50%; left:clamp(24px,5vw,54px); width:min(44%,440px); color:#fff; transform:translateY(-50%); }
+.cover-patient figcaption > span,.cover-summary-title > span { color:#acd1c7; font-size:10px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; }
+.referral-cover h1 { margin:5px 0 8px; color:#fff; font-family:Georgia,"Times New Roman",serif; font-size:clamp(48px,7vw,78px); font-weight:400; letter-spacing:-.06em; line-height:.98; }
+.referral-cover .cover-species { margin:0; color:rgba(255,255,255,.78); font-size:14px; }
+.cover-summary { display:grid; grid-template-columns:190px minmax(0,1fr); gap:34px; padding:25px clamp(24px,4vw,46px) 20px; }
+.cover-summary-title { display:grid; align-content:start; gap:7px; }
+.cover-summary-title > span { color:#79918b; }
+.cover-summary-title strong { color:var(--ink); font-family:Georgia,"Times New Roman",serif; font-size:18px; font-weight:400; line-height:1.25; }
+.referral-cover .document-fields { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; margin:0; }
+.referral-cover .document-fields > div { display:block; padding:0 20px; border-bottom:0; }
+.referral-cover .document-fields > div:first-child { padding-left:0; }
+.referral-cover .document-fields > div:last-child { padding-right:0; }
+.referral-cover .document-fields > div + div { border-left:1px solid #d8e0dc; }
+.referral-cover .document-fields dt { color:#788b87; font-size:10px; font-weight:750; letter-spacing:.09em; line-height:1.45; text-transform:uppercase; }
+.referral-cover .document-fields dd { margin:7px 0 0; color:#405758; font-size:13px; line-height:1.55; }
+.cover-action { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:18px clamp(24px,4vw,46px) 22px; border-top:1px solid #d8e0dc; background:#f1f5f2; }
+.cover-action p { display:grid; gap:3px; margin:0; color:#84938f; font-size:10px; }
+.cover-action p span { color:var(--teal-dark); font-size:11px; font-weight:750; letter-spacing:.06em; text-transform:uppercase; }
+.referral-cover .cover-action .primary-button { min-width:202px; border-radius:6px; }
+@media (max-width:570px) {
+  .referral-cover { width:100%; min-height:100svh; margin:0; border:0; border-radius:0; box-shadow:none; }
+  .referral-cover .document-heading { padding:max(18px,env(safe-area-inset-top)) 18px 15px; font-size:9px; }
+  .referral-cover .cover-recipient { grid-template-columns:1fr; gap:4px; padding:15px 18px 16px; }
+  .referral-cover .cover-recipient strong { font-size:20px; }
+  .referral-cover .cover-recipient > span:last-child { text-align:left; }
+  .referral-cover .cover-patient .patient-photo { min-height:330px; max-height:43svh; aspect-ratio:1.12/1; object-position:57% 57%; }
+  .cover-patient::after { background:linear-gradient(0deg,rgba(10,35,38,.87),rgba(10,35,38,.28) 48%,transparent 72%); }
+  .cover-patient figcaption { top:auto; right:18px; bottom:22px; left:18px; width:auto; transform:none; }
+  .referral-cover h1 { font-size:clamp(43px,14vw,58px); }
+  .cover-summary { grid-template-columns:1fr; gap:14px; padding:18px 18px 13px; }
+  .cover-summary-title { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+  .cover-summary-title strong { font-size:15px; }
+  .referral-cover .document-fields { grid-template-columns:1fr; }
+  .referral-cover .document-fields > div { padding:10px 0; border-bottom:1px solid #e0e6e3; }
+  .referral-cover .document-fields > div + div { border-left:0; }
+  .referral-cover .document-fields > div:last-child { border-bottom:0; }
+  .referral-cover .document-fields dd { margin-top:3px; font-size:12px; line-height:1.45; }
+  .cover-action { padding:14px 18px max(16px,env(safe-area-inset-bottom)); }
+  .cover-action p { display:none; }
+  .referral-cover .cover-action .primary-button { width:100%; min-height:50px; }
 }
-
-.referral-cover h1 {
-  margin: 0 0 9px;
-  color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(42px, 6vw, 64px);
-  font-weight: 400;
-  letter-spacing: -0.06em;
-  line-height: 0.98;
-}
-
-.referral-cover .cover-recipient {
-  grid-template-columns: max-content minmax(0, 1fr);
-  align-items: baseline;
-  column-gap: 18px;
-  row-gap: 5px;
-  margin: 30px 0 36px;
-}
-
-.referral-cover .cover-recipient > span:first-child {
-  grid-column: 1 / -1;
-  color: #82938f;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.referral-cover .cover-recipient strong {
-  color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 21px;
-  font-weight: 400;
-  letter-spacing: -0.025em;
-}
-
-.referral-cover .cover-recipient > span:last-child {
-  color: var(--ink-soft);
-  font-size: 13px;
-}
-
-.referral-cover .cover-species {
-  margin: 0 0 18px;
-  color: var(--ink-soft);
-  font-size: 14px;
-}
-
-.referral-cover .patient-photo {
-  border-radius: 10px;
-  aspect-ratio: 1.85 / 1;
-  object-position: 50% 58%;
-}
-
-.referral-cover .document-fields {
-  margin: 24px 0 26px;
-}
-
-.referral-cover .document-fields > div {
-  grid-template-columns: minmax(116px, 0.3fr) minmax(0, 1fr);
-  gap: 28px;
-  padding: 16px 0;
-}
-
-.referral-cover .document-fields dt {
-  color: #788b87;
-  font-size: 10px;
-  font-weight: 750;
-  letter-spacing: 0.09em;
-  line-height: 1.45;
-  text-transform: uppercase;
-}
-
-.referral-cover .document-fields dd {
-  color: #405758;
-  font-size: 14px;
-  line-height: 1.62;
-}
-
-.referral-cover > .primary-button {
-  margin-left: auto;
-  border-radius: 6px;
-}
-
-@media (max-width: 570px) {
-  .referral-cover {
-    width: 100%;
-    min-height: 100svh;
-    margin: 0;
-    padding: 24px 20px 32px;
-    border-right: 0;
-    border-left: 0;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .referral-cover h1 {
-    font-size: 42px;
-  }
-
-  .referral-cover .cover-recipient {
-    grid-template-columns: 1fr;
-    margin: 25px 0 28px;
-  }
-
-  .referral-cover .cover-recipient > span:first-child {
-    grid-column: auto;
-  }
-
-  .referral-cover .cover-recipient strong {
-    font-size: 20px;
-  }
-
-  .referral-cover .patient-photo {
-    aspect-ratio: 1.2 / 1;
-  }
-
-  .referral-cover .document-fields > div {
-    grid-template-columns: 1fr;
-    gap: 5px;
-    padding: 14px 0;
-  }
-
-  .referral-cover > .primary-button {
-    width: 100%;
-    margin-left: 0;
-  }
+@media (max-width:570px) and (max-height:820px) {
+  .referral-cover .cover-recipient { padding-top:11px; padding-bottom:12px; }
+  .referral-cover .cover-recipient strong { font-size:18px; }
+  .referral-cover .cover-patient .patient-photo { min-height:285px; max-height:38svh; }
+  .cover-patient figcaption { bottom:15px; }
+  .referral-cover h1 { font-size:42px; }
+  .cover-summary { gap:9px; padding-top:13px; padding-bottom:8px; }
+  .referral-cover .document-fields > div { padding:7px 0; }
+  .cover-action { padding-top:10px; }
 }
 
 /* Terminal documents use their own viewport, independent of dossier chrome. */
