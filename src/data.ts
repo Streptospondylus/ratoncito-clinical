@@ -269,14 +269,14 @@ export const diagnosticPanels: DiagnosticPanel[] = [
     status: "Aucune indication d’imagerie avancée",
     icon: "search",
     summary: "Aucune atteinte organique objectivable lors de l’exploration clinique réalisée.",
-    note: "L’absence de signes d’appel et le caractère strictement contextuel du phénomène ne justifient pas, à ce stade, une imagerie lourde. Une surveillance clinique reste recommandée dans le cadre du cas."
+    note: "L’absence de signes d’appel et le caractère strictement contextuel du phénomène ne justifient pas, à ce stade, une imagerie avancée. Surveillance clinique recommandée."
   },
   {
     id: "behavior",
     eyebrow: "ANALYSE · STIMULATION",
     title: "Analyse comportementale",
     description: "Comparaison contrôlée de plusieurs contextes d’exposition.",
-    status: "Signal dominant identifié",
+    status: "Réponse sélective documentée",
     icon: "eye",
     summary: "Coopération et apaisement soutenus uniquement en présence de l’individu familier.",
     note: "Observations intra-individuelles ; absence d’échelle comportementale standardisée."
@@ -378,7 +378,7 @@ export const hypotheses: Hypothesis[] = [
     category: "Organique",
     expected: "exclude",
     feedback: "Peu probable au regard de l’examen de base et de la forte spécificité contextuelle.",
-    rationale: "L’absence de déficit et la reproductibilité liée au contexte diminuent cette hypothèse."
+    rationale: "L’absence de déficit et la reproductibilité liée au contexte rendent cette hypothèse moins probable."
   },
   {
     id: "cardiorespiratory",

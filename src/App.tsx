@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { appConfig } from "./config";
 import {
   diagnosticPanels,
@@ -221,17 +221,37 @@ function Portal({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-function ClosureScreen({ adopted }: { adopted: boolean }) {
-  return <main className="referral-cover closure-document">
-    <header className="document-heading"><span>CLÔTURE DU DOSSIER</span><span>{appConfig.case.id}</span></header>
-    <p className="eyebrow">{adopted ? "Contrat d’adoption" : "Incident terminal"}</p>
-    <h1 id="closure-title" tabIndex={-1}>{adopted ? "Adoption acceptée." : "Décès de Ratoncito."}</h1>
-    {adopted ? <>
-      <dl className="document-fields"><div><dt>Adoptante</dt><dd>{appConfig.recipient.displayName || "Vous"}</dd></div>
-        <div><dt>Évolution immédiate</dt><dd>Recherche terminée. Patient installé au contact.</dd></div>
-        <div><dt>Effets personnels</dt><dd>Un petit cadeau, remis à son unique destinataire.</dd></div></dl>
-      <p className="closure-note">Le raton a trouvé sa place.</p>
-    </> : <p className="closure-note">À la sortie de la clinique, Ratoncito s’est jeté de lui-même dans la gueule d’un chat. Aucune intervention n’a pu être réalisée.</p>}
+function ClosureScreen({ adopted, onReturn }: { adopted: boolean; onReturn: () => void }) {
+  return <main className={"closure-document " + (adopted ? "closure-accepted" : "closure-refused")}>
+    <div className="closure-sheet">
+      <header className="closure-heading">
+        <span>{adopted ? "DOSSIER CLÔTURÉ" : "CLÔTURE DU DOSSIER"}</span>
+        <span>{appConfig.case.id}</span>
+      </header>
+      <section className="closure-body" aria-labelledby="closure-title">
+        <p className="closure-kicker">{adopted ? "Accord de prise en charge" : "Compte rendu d’incident"}</p>
+        <h1 id="closure-title" tabIndex={-1}>{adopted ? <>Adoption<br />acceptée.</> : <>Décès de<br />Ratoncito.</>}</h1>
+        {adopted ? <>
+          <p className="closure-recipient"><span>Adoptante</span><strong>{appConfig.recipient.displayName || "Vous"}</strong></p>
+          <div className="closure-recommendations">
+            <h2>Conditions à maintenir</h2>
+            <dl>
+              <div><dt>Contact</dt><dd>Proximité de l’individu identifié, notamment au repos.</dd></div>
+              <div><dt>Routines</dt><dd>Environnement familier, repas réguliers et repos partagé.</dd></div>
+              <div><dt>Effets personnels</dt><dd>Petit cadeau à remettre à son unique destinataire.</dd></div>
+            </dl>
+          </div>
+          <div className="closure-validation"><strong>ADOPTION VALIDÉE</strong><span>{appConfig.case.date}</span></div>
+        </> : <>
+          <p className="closure-incident">À la sortie de la clinique, Ratoncito s’est jeté de lui-même dans la gueule d’un chat. Aucune intervention n’a pu être réalisée.</p>
+          <dl className="closure-status"><div><dt>Issue</dt><dd>Décès</dd></div><div><dt>Dossier</dt><dd>Clos</dd></div></dl>
+        </>}
+      </section>
+      <footer className="closure-bottom">
+        {adopted ? <p>Le raton a trouvé sa place.</p> : <p className="closure-date">{appConfig.case.date}</p>}
+        <button className="closure-return" onClick={onReturn}>Retour au dossier</button>
+      </footer>
+    </div>
   </main>;
 }
 
@@ -248,6 +268,7 @@ function App() {
   const [revealStage, setRevealStage] = useState<RevealStage>("idle");
   const [closed, setClosed] = useState(false);
   const [adopted, setAdopted] = useState(false);
+  const returnToContract = useRef(false);
 
   const recipientName = appConfig.recipient.displayName.trim();
   const visitedCount = new Set(visited).size;
@@ -262,6 +283,13 @@ function App() {
   const nextPanel = diagnosticPanels.find((panel) => panel.id === review.missingPanels[0]);
 
   useEffect(() => {
+    if (returnToContract.current && !closed) {
+      const contract = document.getElementById("adoption-contract");
+      contract?.focus({ preventScroll: true });
+      contract?.scrollIntoView({ block: "start", behavior: "instant" });
+      returnToContract.current = false;
+      return;
+    }
     if (started) {
       document.getElementById(closed ? "closure-title" : "main-content")?.focus({ preventScroll: true });
       window.scrollTo({
@@ -346,7 +374,7 @@ function App() {
   }
 
   if (closed) {
-    return <ClosureScreen adopted={adopted} />;
+    return <ClosureScreen adopted={adopted} onReturn={() => { returnToContract.current = true; setClosed(false); }} />;
   }
 
   function renderOverview() {
@@ -381,7 +409,7 @@ function App() {
             <div className="card-heading card-heading-wide">
               <div>
                 <p className="card-eyebrow">HISTORIQUE RAPPORTÉ</p>
-                <h2>Chronologie du phénomène</h2>
+                <h2>Anamnèse chronologique</h2>
               </div>
               <Icon name="clipboard" size={21} />
             </div>
@@ -548,7 +576,7 @@ function App() {
             </span>
           </div>
           <p className="panel-body-intro">
-            Même environnement, mêmes tâches ; seul l’intervenant varie.
+            Comparaison des conditions d’exposition dans le même environnement. Coopération évaluée séparément avec un opérateur témoin et l’individu A.
           </p>
           <div className="comparison-table-wrap">
             <table className="comparison-table"><caption>Coopération observée · 6 présentations</caption>
@@ -587,7 +615,7 @@ function App() {
           <div className="stimulus-detail" aria-live="polite">
             <div className="stimulus-detail-header">
               <div>
-                <span className="card-eyebrow">LECTURE DU SIGNAL</span>
+                <span className="card-eyebrow">OBSERVATIONS COMPORTEMENTALES</span>
                 <h3>{selected.label}</h3>
               </div>
               <span className={"response-badge response-badge-" + selected.response}>
@@ -631,25 +659,12 @@ function App() {
     if (panel.id === "exploration") {
       return (
         <div className="panel-body exploration-body">
-          <div className="exploration-visual">
-            <div className="exploration-scan">
-              <span />
-              <span />
-              <span />
-              <span />
-              <div className="scan-crosshair">
-                <i />
-                <i />
-              </div>
-            </div>
-            <span className="scan-label">EXPLORATION<br />CLINIQUE CIBLÉE</span>
-          </div>
           <div className="exploration-copy">
             <p className="card-eyebrow">DÉCISION D’EXPLORATION</p>
-            <h3>Aucune imagerie lourde indiquée à ce stade</h3>
+            <h3>Pas d’indication d’imagerie avancée à ce stade</h3>
             <p>
               L’état général conservé, l’examen non contributif et la dépendance
-              stricte au contexte ne justifient pas une exploration invasive.
+              stricte au contexte ne motivent pas, à ce stade, d’examen d’imagerie avancée.
             </p>
             <div className="decision-line">
               <span className="status-check">
@@ -715,7 +730,7 @@ function App() {
           description=""
         >
           <span className="section-counter">
-            {openedPanels.length} / {diagnosticPanels.length} modules consultés
+            {openedPanels.length} / {diagnosticPanels.length} examens consultés
           </span>
         </SectionIntro>
 
@@ -897,8 +912,8 @@ function App() {
               <div><span>Conduite retenue dans ce dossier</span><strong>Adoption par l’individu identifié. Les solutions de substitution sont restées insuffisantes.</strong></div></div>
           </div>
         </article>
-        <article className="card adoption-contract">
-          <p className="card-eyebrow">ANNEXE · ACCORD DE PRISE EN CHARGE</p><h2>Contrat d’adoption</h2>
+        <article className="card adoption-contract" id="adoption-contract" tabIndex={-1} aria-labelledby="contract-title">
+          <p className="card-eyebrow">ANNEXE · ACCORD DE PRISE EN CHARGE</p><h2 id="contract-title">Contrat d’adoption</h2>
           <dl className="document-fields"><div><dt>Patient</dt><dd>Ratoncito, dit « mon raton ».</dd></div>
             <div><dt>Adoptante sollicitée</dt><dd>{recipientName || "Vous"}</dd></div>
             <div><dt>Hébergement</dt><dd>À portée de contact. Place réservée pendant Hunter × Hunter.</dd></div>

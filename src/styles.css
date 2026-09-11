@@ -3899,9 +3899,6 @@ a:focus-visible {
 .contract-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .contract-actions .primary-button { flex: 1; }
 .report-pending { padding: 28px; }
-.closure-document { margin-top: 12vh; }
-.closure-document .eyebrow { margin-top: 32px; }
-.closure-note { font-size: 17px; line-height: 1.6; }
 .sidebar-bottom .progress-heading, .sidebar-bottom .progress-track { display: none; }
 .topbar-secure, .topbar-divider { display: none; }
 .data-table th, .data-table td { font-size: 12px; }
@@ -3919,7 +3916,6 @@ a:focus-visible {
   .contract-actions > button { width: 100%; }
   .comparison-table th, .comparison-table td { padding: 9px 5px; }
   .comparison-table th:first-child { width: 48%; }
-  .closure-document { margin: 0; }
 }
 
 /* UI refinement: private case file, not a generic veterinary dashboard */
@@ -4516,4 +4512,121 @@ a:focus-visible {
     width: 100%;
     margin-left: 0;
   }
+}
+
+/* Terminal documents use their own viewport, independent of dossier chrome. */
+.closure-document {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #fcfdfc;
+  color: var(--ink);
+  padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+  display: flex;
+}
+.closure-sheet {
+  width: min(100%, 620px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.closure-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--ink);
+  font-size: .75rem;
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: .055em;
+}
+.closure-heading span:last-child { font-weight: 400; letter-spacing: .015em; }
+.closure-body { padding: clamp(30px, 6vh, 64px) 0 24px; }
+.closure-kicker {
+  margin: 0 0 16px;
+  color: var(--ink-soft);
+  font-size: .875rem;
+  line-height: 1.5;
+}
+.closure-body h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.75rem, 7vw, 4rem);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -.04em;
+}
+.closure-recipient { display: flex; flex-wrap: wrap; gap: 5px 16px; margin: 20px 0 24px; font-size: .875rem; line-height: 1.5; }
+.closure-recipient span { color: var(--ink-soft); }
+.closure-recipient strong { font-weight: 600; overflow-wrap: anywhere; }
+.closure-recommendations { border-top: 1px solid var(--line-strong); padding-top: 18px; }
+.closure-recommendations h2 { margin: 0 0 12px; font-size: .875rem; font-weight: 650; }
+.closure-recommendations dl { margin: 0; }
+.closure-recommendations dl > div { margin-top: 12px; }
+.closure-recommendations dt { margin-bottom: 3px; font-size: .75rem; color: var(--ink-soft); }
+.closure-recommendations dd { margin: 0; font-size: 1rem; line-height: 1.45; }
+.closure-validation {
+  margin-top: 24px;
+  border-left: 2px solid #54796e;
+  padding: 4px 0 4px 12px;
+  display: grid;
+  gap: 5px;
+  color: #365e53;
+  font-size: .75rem;
+  line-height: 1.4;
+}
+.closure-validation strong { letter-spacing: .09em; font-weight: 650; }
+.closure-validation span { color: var(--ink-soft); }
+.closure-bottom { margin-top: auto; padding-top: 12px; }
+.closure-bottom p { margin: 0 0 12px; font-size: 1rem; line-height: 1.5; }
+.closure-return {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: .875rem;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: #a9b7b2;
+  cursor: pointer;
+}
+.closure-return:hover { color: var(--ink); }
+.closure-return:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
+.closure-refused .closure-body { padding-top: clamp(60px, 12vh, 120px); }
+.closure-incident { max-width: 34em; margin: 28px 0; font-size: 1rem; line-height: 1.65; }
+.closure-status { display: flex; gap: 40px; border-top: 1px solid var(--line); padding-top: 18px; margin: 0; font-size: .875rem; line-height: 1.5; }
+.closure-status dt { color: var(--ink-soft); font-size: .75rem; }
+.closure-status dd { margin: 4px 0 0; }
+.closure-bottom .closure-date { color: var(--ink-soft); font-size: .75rem; }
+
+/* Keep the contract and clinical reading controls legible at phone widths. */
+#adoption-contract { scroll-margin-top: 90px; }
+.app-shell .adoption-contract .document-fields > div { grid-template-columns: 145px minmax(0, 1fr); gap: 20px; }
+.app-shell .adoption-contract .document-fields dt { font-size: .75rem; letter-spacing: .04em; }
+.app-shell .adoption-contract .document-fields dd { font-size: 1rem; }
+.app-shell .exploration-body { grid-template-columns: 1fr; }
+@media (max-width: 570px) {
+  .app-shell .section-intro h1 { font-size: 2rem; line-height: 1.15; }
+  .app-shell .timeline-content > p,
+  .app-shell .observation-card > p,
+  .app-shell .hypothesis-rationale,
+  .app-shell .report-body > p,
+  .app-shell .document-fields dd { font-size: 1rem; line-height: 1.6; }
+  .app-shell .decision-button { min-height: 44px; font-size: .875rem; }
+  .app-shell .panel-title strong { font-size: 1rem; }
+  .app-shell .section-counter { font-size: .75rem; }
+  .app-shell .adoption-contract .document-fields > div { grid-template-columns: 1fr; gap: 5px; padding: 16px 0; }
+  .contract-actions { gap: 10px; }
+  .contract-actions > button { min-height: 48px; }
+}
+@media (max-height: 740px) {
+  .closure-body { padding-top: 24px; padding-bottom: 16px; }
+  .closure-recipient { margin: 14px 0 16px; }
+  .closure-recommendations { padding-top: 12px; }
+  .closure-recommendations dl > div { margin-top: 9px; }
+  .closure-validation { margin-top: 18px; }
 }
