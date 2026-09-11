@@ -1,17 +1,23 @@
 # Photographies du dossier
 
-Génération avec l’outil imagegen intégré ; export JPEG qualité 85 pour mobile.
-Deux fichiers, environ 490 Ko au total, sans métadonnée de destinataire.
+Deux photographies JPEG documentent l’admission et l’observation au contact.
+Elles ne comportent aucune métadonnée de destinataire.
 
 - `public/images/ratoncito-examen.jpg`
 - `public/images/ratoncito-contact.jpg`
 
-## Photographie d’admission — prompt
+## Photographie d’admission — cahier des charges
 
-Create a photorealistic veterinary examination photograph for a fictional animal referral dossier. Landscape 3:2 composition. A single healthy adult dark brown agouti black rat (Rattus rattus), natural slender muzzle, large rounded ears, anatomically correct paws and long tail, awake and calmly alert on a pale grey clean examination towel on a veterinary examination table. Beside its forepaws rests one very small plain kraft paper gift parcel tied with thin cotton string, a discreet narrative detail. Clinical documentary photography, neutral white balance, soft examination-room daylight, realistic fur and whiskers, restrained framing at animal eye level, practical unadorned background, accurate animal scale. No cartoon, no anthropomorphic smile, no clothing, no hearts, no typography, no logos, no instruments touching the animal, no human visible, no collage. The rat should be endearing through natural realism, not stylization. Intended as the primary patient identification photo in a sober professional medical report.
+Photographie vétérinaire réaliste, cadrage horizontal 3:2. Un rat noir
+(*Rattus rattus*) adulte, brun agouti foncé, éveillé et calme, est posé sur une
+serviette d’examen gris pâle. Près de ses pattes antérieures se trouve un petit
+paquet en papier kraft noué avec une ficelle fine. Lumière neutre de salle
+d’examen, anatomie et échelle exactes, arrière-plan sobre, sans logo ni texte.
 
-## Observation au contact — prompt
+## Observation au contact — cahier des charges
 
-Reference: the admission photograph above.
-
-Create a second clinical documentary photograph of the exact same healthy dark brown agouti rat from the reference photo, preserving its fur color, anatomy and realistic proportions. New scene: the rat is resting peacefully on the same pale grey towel, eyes gently half closed, head leaning naturally against the side of a relaxed adult human hand laid flat beside it. Only a small portion of the hand is visible; no face, no personal identifiers, no jewelry. The hand does not restrain the animal. Side view, relaxed natural posture, realistic whiskers and paws, neutral examination-room lighting and clean unobtrusive background. Landscape 3:2 photograph. This illustrates calm voluntary proximity for a veterinary behavior observation record. Remove the gift parcel from this second image. No cartoon, no anthropomorphism, no hearts, no text, no logo, no collage.
+Même patient, couleur de robe, anatomie et proportions conservées. Le rat repose
+sur la même serviette, les yeux mi-clos, la tête appuyée volontairement contre le
+côté d’une main adulte détendue. La main ne réalise aucune contention. Vue
+latérale, posture naturelle, lumière clinique neutre et arrière-plan discret.
+Cadrage horizontal 3:2, sans paquet cadeau, logo ni texte.
