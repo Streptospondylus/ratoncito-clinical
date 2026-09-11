@@ -1,22 +1,23 @@
-# Ratoncito — dossier clinique interactif
+# Ratoncito — dossier clinique vétérinaire
 
-Micro-expérience web autonome présentant un cas NAC fictif dans une interface de
-référé vétérinaire. Le parcours est mobile-first, mais dispose d’une mise en page
-complète pour ordinateur et tablette.
+Dossier de consultation NAC structuré pour une lecture mobile et une consultation
+complète sur ordinateur ou tablette.
 
-## Intention
+## Parcours clinique
 
-La personne qui reçoit le lien explore un véritable dossier de consultation :
+Le dossier suit l’ordre d’examen suivant :
 
-1. vue d’ensemble du patient ;
+1. identification et vue d’ensemble du patient ;
 2. anamnèse ;
 3. examen clinique ;
 4. examens complémentaires ;
-5. classification des hypothèses ;
-6. génération d’une synthèse clinique à révélation progressive.
+5. classification des hypothèses diagnostiques ;
+6. synthèse clinique et conduite à tenir ;
+7. annexe de suivi en cas d’adoption.
 
-Le ton reste clinique et retenu. Les données de comportement sont des mesures de
-simulation narrative ; elles ne constituent pas un protocole diagnostique validé.
+Les faits observés, leur interprétation et la conclusion sont présentés séparément.
+Les données affichées dans les tableaux et les textes cliniques sont regroupées
+dans `src/data.ts`, indépendamment de la logique d’interface.
 
 ## Démarrage local
 
@@ -25,55 +26,46 @@ Prérequis : Node.js 20.19 ou 22.12 et plus récent.
     npm install
     npm run dev
 
-Les commandes utiles sont :
+Commandes de contrôle :
 
     npm run typecheck
     npm run test
     npm run build
     npm run preview
 
-## Personnalisation
+## Configuration du dossier
 
-Les informations structurelles modifiables sont regroupées dans src/config.ts.
-Pour le prénom ou surnom du destinataire, utiliser la variable d’environnement
-`VITE_RECIPIENT_NAME` en local ou le secret GitHub Actions
-`RATONCITO_RECIPIENT_NAME` pour Pages. Ne pas écrire ce prénom dans le dépôt public.
-
-Avant un envoi, vérifier notamment :
-
-- patient.age ;
-- patient.weight ;
-- les noms de cliniciens si nécessaire ;
-- les formulations de la conclusion ;
-- le texte du mail.
-
-Les données affichées dans les tableaux et les textes cliniques sont séparées de la
-logique d’interface dans src/data.ts.
+Les informations structurelles sont regroupées dans `src/config.ts`.
+Le nom de la destinataire peut être fourni avec `VITE_RECIPIENT_NAME` en local
+ou avec le secret GitHub Actions `RATONCITO_RECIPIENT_NAME` pour Pages. Il ne
+doit pas être inscrit directement dans le dépôt public.
 
 ## Structure
 
     src/
-      App.tsx       interface et parcours interactif
-      config.ts     personnalisation centrale
-      data.ts       contenu clinique de simulation
-      domain.ts     règles de progression et de classification
-      main.tsx      point d’entrée
-      styles.css    direction visuelle et responsive
+      App.tsx                 interface et parcours clinique
+      config.ts              configuration centrale
+      data.ts                observations et résultats
+      domain.ts              progression et classification
+      main.tsx               point d’entrée
+      styles.css             mise en page du dossier
+      closure-refused.css    compte rendu d’incident
     docs/
       clinical-sources.md
       deployment.md
       email-copy.md
+      image-prompts.md
 
-## Qualité clinique
+## Références cliniques
 
-La documentation des sources, des limites d’extrapolation et des choix de contenu
-est disponible dans docs/clinical-sources.md.
+Les sources, les limites d’extrapolation et les choix de présentation sont
+documentés dans `docs/clinical-sources.md`.
 
-Le cas emploie Rattus rattus comme espèce narrative. Lorsqu’un intervalle chiffré
-est affiché, il est explicitement présenté comme une comparaison prudente avec des
-intervalles publiés chez le rat de compagnie Rattus norvegicus. Aucune valeur
-canine ou féline n’est utilisée.
+Le patient est identifié comme *Rattus rattus*. Lorsqu’un intervalle chiffré est
+affiché, il est présenté comme une comparaison prudente avec des intervalles
+publiés chez le rat de compagnie *Rattus norvegicus*. Aucune valeur canine ou
+féline n’est utilisée.
 
 ## Déploiement
 
-Voir docs/deployment.md pour le build statique et les options d’hébergement.
+Voir `docs/deployment.md` pour le build statique et les options d’hébergement.
