@@ -19,8 +19,8 @@ export const appConfig = {
     bodyCondition: "3 / 5"
   },
   case: {
-    id: "NAC-26-0918-07",
-    date: "18 septembre 2026",
+    id: "NAC-26-0911-07",
+    date: "11 septembre 2026",
     referringClinician: "Dossier référé",
     attendingClinician: import.meta.env.VITE_RECIPIENT_NAME || "Vétérinaire destinataire",
     status: "Évaluation active"
