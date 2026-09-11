@@ -206,17 +206,26 @@ function SectionIntro({
 function Portal({ onOpen }: { onOpen: () => void }) {
   return (
     <main className="referral-cover">
-      <header className="document-heading"><span>DOSSIER DE RÉFÉRÉ</span><span>{appConfig.case.id}</span></header>
-      <div className="cover-recipient"><span>À l’attention de</span><strong>{appConfig.recipient.displayName || "La vétérinaire destinataire"}</strong>
-        <span>{appConfig.clinic.name} · {appConfig.clinic.location}</span></div>
-      <h1>Ratoncito</h1>
-      <p className="cover-species"><em>{appConfig.patient.species}</em> · mâle · {appConfig.patient.weight}</p>
-      <PatientPhoto />
-      <dl className="document-fields"><div><dt>Motif</dt><dd>Recherche de contact exclusive. Coopération dépendante d’un individu familier.</dd></div>
-        <div><dt>État général</dt><dd>Conservé. Difficulté à maintenir le repos en séparation.</dd></div>
-        <div><dt>Pièce jointe</dt><dd>Petit présent retrouvé avec le patient. Destinataire unique.</dd></div></dl>
-      <button className="primary-button" onClick={onOpen}>Examiner le dossier<Icon name="arrow" size={17} /></button>
-      <footer className="document-footer">{appConfig.case.date} · Observation individuelle</footer>
+      <header className="document-heading"><span>DOSSIER DE RÉFÉRÉ · UNITÉ NAC</span><span>{appConfig.case.id}</span></header>
+      <section className="cover-recipient" aria-label="Destinataire du dossier">
+        <span>À l’attention de</span><strong>{appConfig.recipient.displayName || "La vétérinaire destinataire"}</strong>
+        <span>{appConfig.clinic.name} · {appConfig.clinic.location}</span>
+      </section>
+      <figure className="cover-patient"><PatientPhoto /><figcaption>
+        <span>Patient adressé</span><h1>Ratoncito</h1>
+        <p className="cover-species"><em>{appConfig.patient.species}</em> · mâle · {appConfig.patient.age} · {appConfig.patient.weight}</p>
+      </figcaption></figure>
+      <section className="cover-summary" aria-label="Résumé d’admission">
+        <div className="cover-summary-title"><span>Note d’admission</span><strong>Observation individuelle</strong></div>
+        <dl className="document-fields">
+          <div><dt>Motif</dt><dd>Recherche de contact exclusive. Coopération dépendante d’un individu familier.</dd></div>
+          <div><dt>État général</dt><dd>Conservé. Difficulté à maintenir le repos en séparation.</dd></div>
+          <div><dt>Élément associé</dt><dd>Petit présent conservé à proximité. Destinataire unique.</dd></div>
+        </dl>
+      </section>
+      <div className="cover-action"><p><span>Dossier prêt à examiner</span>{appConfig.case.date}</p>
+        <button className="primary-button" onClick={onOpen}>Examiner le dossier<Icon name="arrow" size={17} /></button>
+      </div>
     </main>
   );
 }
