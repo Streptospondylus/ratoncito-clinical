@@ -225,30 +225,31 @@ function ClosureScreen({ adopted, onReturn }: { adopted: boolean; onReturn: () =
   return <main className={"closure-document " + (adopted ? "closure-accepted" : "closure-refused")}>
     <div className="closure-sheet">
       <header className="closure-heading">
-        <span>{adopted ? "DOSSIER CLÔTURÉ" : "CLÔTURE DU DOSSIER"}</span>
+        <span>{adopted ? "ADOPTION VALIDÉE" : "CLÔTURE DU DOSSIER"}</span>
         <span>{appConfig.case.id}</span>
       </header>
       <section className="closure-body" aria-labelledby="closure-title">
-        <p className="closure-kicker">{adopted ? "Accord de prise en charge" : "Compte rendu d’incident"}</p>
-        <h1 id="closure-title" tabIndex={-1}>{adopted ? <>Adoption<br />acceptée.</> : <>Décès de<br />Ratoncito.</>}</h1>
+        <p className="closure-kicker">{adopted ? "Décision de prise en charge" : "Compte rendu d’incident"}</p>
+        <h1 id="closure-title" tabIndex={-1}>{adopted ? <>Ratoncito<br />est adopté.</> : <>Décès de<br />Ratoncito.</>}</h1>
         {adopted ? <>
-          <p className="closure-recipient"><span>Adoptante</span><strong>{appConfig.recipient.displayName || "Vous"}</strong></p>
-          <div className="closure-recommendations">
-            <h2>Conditions à maintenir</h2>
-            <dl>
-              <div><dt>Contact</dt><dd>Proximité de l’individu identifié, notamment au repos.</dd></div>
-              <div><dt>Routines</dt><dd>Environnement familier, repas réguliers et repos partagé.</dd></div>
-              <div><dt>Effets personnels</dt><dd>Petit cadeau à remettre à son unique destinataire.</dd></div>
-            </dl>
+          <p className="closure-accepted-copy">
+            Vous avez adopté Ratoncito. Il est désormais placé sous votre responsabilité et va prendre toute sa place dans votre quotidien.
+          </p>
+          <p className="closure-accepted-copy">
+            Il est très heureux et présente une espérance de vie exceptionnellement longue pour son espèce&nbsp;: il est donc possible que vous viviez toute votre vie ensemble.
+          </p>
+          <p className="closure-care">Prenez soin de lui.</p>
+          <div className="closure-validation">
+            <strong>ADOPTION VALIDÉE</strong>
+            <span>LIEN MAINTENU</span>
           </div>
-          <div className="closure-validation"><strong>ADOPTION VALIDÉE</strong><span>{appConfig.case.date}</span></div>
         </> : <>
           <p className="closure-incident">À la sortie de la clinique, Ratoncito s’est jeté de lui-même dans la gueule d’un chat. Aucune intervention n’a pu être réalisée.</p>
           <dl className="closure-status"><div><dt>Issue</dt><dd>Décès</dd></div><div><dt>Dossier</dt><dd>Clos</dd></div></dl>
         </>}
       </section>
       <footer className="closure-bottom">
-        {adopted ? <p>Le raton a trouvé sa place.</p> : <p className="closure-date">{appConfig.case.date}</p>}
+        {adopted ? <p className="closure-date">{appConfig.case.date}</p> : <p className="closure-date">{appConfig.case.date}</p>}
         <button className="closure-return" onClick={onReturn}>Retour au dossier</button>
       </footer>
     </div>
@@ -903,27 +904,113 @@ function App() {
       <SectionIntro eyebrow="Compte rendu" title="Synthèse & conduite à tenir" description="" />
       {!isRevealed ? <div className="card report-pending" role="status">Établissement du compte rendu…</div> : <>
         <article className="card clinical-report-card">
-          <div className="report-header"><div><p className="card-eyebrow">FACTEUR INDIVIDUEL IDENTIFIÉ</p>
-            <h2>{recipientName || "Vous"}</h2></div></div>
-          <div className="report-body">
-            <p>Orientation à votre voix et à votre odeur. Contact recherché dans 6 présentations sur 6. Repos obtenu à votre proximité ; vigilance reprise à votre départ.</p>
-            <p>Les conditions témoins ne reproduisent ni la coopération ni la durée d’apaisement. Le bilan disponible n’apporte pas d’explication organique à cette sélectivité.</p>
-            <div className="report-outcome"><div><span>Conclusion</span><strong>Attachement individuel marqué, avec recherche persistante de votre présence.</strong></div>
-              <div><span>Conduite retenue dans ce dossier</span><strong>Adoption par l’individu identifié. Les solutions de substitution sont restées insuffisantes.</strong></div></div>
+          <header className="report-header">
+            <div>
+              <p className="card-eyebrow">COMPTE RENDU DE CONSULTATION · NAC</p>
+              <h2>Ratoncito</h2>
+            </div>
+            <span className="report-reference">{appConfig.case.id}</span>
+          </header>
+          <div className="report-body report-sections">
+            <section className="report-section report-section-identity">
+              <h3>1 · Identification du patient</h3>
+              <dl className="report-facts">
+                <div><dt>Patient</dt><dd>Ratoncito, dit « mon raton »</dd></div>
+                <div><dt>Espèce</dt><dd><em>{appConfig.patient.species}</em> · {appConfig.patient.sex}</dd></div>
+                <div><dt>Signalement</dt><dd>{appConfig.patient.age} · {appConfig.patient.weight} · état corporel {appConfig.patient.bodyCondition}</dd></div>
+              </dl>
+            </section>
+            <section className="report-section">
+              <h3>2 · Motif de consultation</h3>
+              <p>Recherche persistante d’un contact exclusif, avec repos, prise alimentaire et coopération nettement améliorés auprès d’un seul individu familier.</p>
+            </section>
+            <section className="report-section">
+              <h3>3 · Anamnèse</h3>
+              <p>Attachement ancien et stable. Orientation immédiate à l’appel « mon raton », reconnaissance de la voix, du rire et de l’odeur. En séparation, contrôle du point de sortie et préparation du lieu de repos ; apaisement sans délai au rapprochement. Repas préparés et repos partagé devant Hunter × Hunter associés à une meilleure stabilité.</p>
+            </section>
+            <section className="report-section">
+              <h3>4 · Examen clinique</h3>
+              <dl className="report-facts report-facts-compact">
+                {examRows.map((row) => <div key={row.label}><dt>{row.label}</dt><dd><strong>{row.value}</strong><span>{row.interpretation}</span></dd></div>)}
+              </dl>
+            </section>
+            <section className="report-section">
+              <h3>5 · Hématologie</h3>
+              <p><strong>Profil non contributif.</strong> Hématocrite à 46 %, formule leucocytaire sans particularité et frottis sanguin non contributif. Aucune anomalie hématologique majeure mise en évidence.</p>
+            </section>
+            <section className="report-section">
+              <h3>6 · Biochimie</h3>
+              <dl className="report-lab-grid">
+                <div><dt>Glucose</dt><dd>8,9 mmol/L</dd></div><div><dt>Urée</dt><dd>4,1 mmol/L</dd></div>
+                <div><dt>Créatinine</dt><dd>31 µmol/L</dd></div><div><dt>ALT</dt><dd>61 UI/L</dd></div>
+                <div><dt>Protéines totales</dt><dd>72 g/L</dd></div><div><dt>Sodium</dt><dd>139 mmol/L</dd></div>
+              </dl>
+              <p className="report-note">Profil sans anomalie susceptible d’expliquer le tableau ; valeurs comparées avec prudence aux intervalles publiés chez le rat de compagnie.</p>
+            </section>
+            <section className="report-section">
+              <h3>7 · Exploration clinique</h3>
+              <p>Aucune atteinte organique objectivable. En l’absence de signe d’appel et compte tenu du caractère strictement contextuel, aucune indication d’imagerie avancée n’est retenue à ce stade.</p>
+            </section>
+            <section className="report-section">
+              <h3>8 · Analyse comportementale comparative</h3>
+              <div className="report-highlight">
+                <strong>Individu identifié : {recipientName || "vous"}</strong>
+                <span>Orientation 0,7 s · approche et contact 6/6 · coopération 6/6 · retour au calme &lt; 10 s au contact</span>
+              </div>
+              <p>La réponse forte, sélective et reproductible n’est reproduite ni par l’environnement familier, ni par l’alimentation, l’enrichissement, la manipulation neutre, un opérateur inconnu ou la condition contrôle.</p>
+            </section>
+            <section className="report-section">
+              <h3>9 · Hypothèses diagnostiques écartées</h3>
+              <p>Affection métabolique, cause neurologique, affection cardio-respiratoire primaire, processus douloureux et cause toxique : hypothèses non soutenues par l’examen, les analyses disponibles et la spécificité contextuelle.</p>
+            </section>
+            <section className="report-section">
+              <h3>10 · Hypothèse incertaine</h3>
+              <p><strong>Trouble comportemental primaire.</strong> Le caractère sélectif ne suffit pas à l’établir ; aucun retentissement durable sur l’alimentation ou l’activité n’est documenté.</p>
+            </section>
+            <section className="report-section">
+              <h3>11 · Hypothèse retenue</h3>
+              <p><strong>Réponse spécifique à un stimulus identifié.</strong> Cette hypothèse rend compte de la sélectivité, de la répétabilité et de la résolution au rapprochement sans ajouter de maladie non documentée.</p>
+            </section>
+            <section className="report-section">
+              <h3>12 · Discussion clinique</h3>
+              <p>La conservation de l’état général, l’absence de déficit focal et le bilan biologique rassurant rendent une origine organique peu probable. La concordance temporelle des réponses à la voix, à l’odeur et au contact, associée à l’échec des conditions de substitution, soutient un attachement individuel marqué.</p>
+            </section>
+            <section className="report-section report-section-conclusion">
+              <h3>13 · Conclusion</h3>
+              <p>Attachement individuel marqué à {recipientName || "l’individu identifié"}, avec recherche persistante de présence et apaisement reproductible au contact.</p>
+            </section>
+            <section className="report-section report-section-plan">
+              <h3>14 · Conduite à tenir</h3>
+              <p>Prise en charge par l’individu identifié, maintien des repères familiers, des routines alimentaires, du repos partagé et des contacts relationnels essentiels. Surveillance de l’état général, de l’appétit et de toute modification comportementale.</p>
+            </section>
           </div>
         </article>
+
         <article className="card adoption-contract" id="adoption-contract" tabIndex={-1} aria-labelledby="contract-title">
-          <p className="card-eyebrow">ANNEXE · ACCORD DE PRISE EN CHARGE</p><h2 id="contract-title">Contrat d’adoption</h2>
-          <dl className="document-fields"><div><dt>Patient</dt><dd>Ratoncito, dit « mon raton ».</dd></div>
-            <div><dt>Adoptante sollicitée</dt><dd>{recipientName || "Vous"}</dd></div>
-            <div><dt>Hébergement</dt><dd>À portée de contact. Place réservée pendant Hunter × Hunter.</dd></div>
-            <div><dt>Entretien</dt><dd>Repas réguliers, affection, écoute et contacts rapprochés. Sorties alimentaires au restaurant bien tolérées.</dd></div>
-            <div><dt>Besoins rapportés</dt><dd>Contacts affectifs rapprochés, coït (« pan pan »), besoin de téter et « bouche-à-bouche ». Modalités à convenir avec l’adoptante.</dd></div>
-            <div><dt>Contribution du patient</dt><dd>Massages, préparation des retrouvailles et remise du cadeau.</dd></div>
+          <header className="contract-header">
+            <p className="card-eyebrow">ANNEXE AU COMPTE RENDU · SUIVI DU BIEN-ÊTRE</p>
+            <h2 id="contract-title">Conditions essentielles de prise en charge en cas d’adoption</h2>
+            <p>Ces dispositions répondent aux besoins affectifs, relationnels et environnementaux observés chez Ratoncito. Leur maintien conditionne son équilibre.</p>
+          </header>
+          <dl className="contract-sections">
+            <div><dt>Objet du suivi</dt><dd>Préserver durablement les conditions dans lesquelles le patient s’alimente, se repose et coopère avec stabilité.</dd></div>
+            <div><dt>Patient</dt><dd>Ratoncito, dit « mon raton ».</dd></div>
+            <div><dt>Adoptante</dt><dd>{recipientName || "Vous"}, individu de référence identifié au cours de l’exploration.</dd></div>
+            <div><dt>Conditions d’environnement</dt><dd>Hébergement à proximité physique de l’adoptante, avec accès régulier aux contacts rapprochés et maintien des repères familiers.</dd></div>
+            <div><dt>Conditions de repos</dt><dd>Repos partagé, notamment devant Hunter × Hunter, avec possibilité de demeurer au contact et de surveiller paisiblement les mouvements des pieds.</dd></div>
+            <div><dt>Alimentation et routines</dt><dd>Repas réguliers préparés ou accompagnés par l’adoptante, sorties alimentaires au restaurant et rituels de retrouvailles incluant la remise de son cadeau.</dd></div>
+            <div><dt>Contacts et besoins relationnels essentiels</dt><dd>Affection, écoute, proximité soutenue et bouche-à-bouche. Le coït, désigné « pan pan », ainsi que le besoin de téter font partie des modalités relationnelles indispensables documentées dans ce dossier.</dd></div>
+            <div><dt>Signes de bien-être à préserver</dt><dd>Approche spontanée, maintien volontaire au contact, prise alimentaire régulière, relâchement postural et repos sans contrôle anxieux de la sortie.</dd></div>
+            <div><dt>Conséquences possibles d’une privation</dt><dd>Recherche persistante de l’individu, vigilance accrue, difficulté à maintenir le repos et diminution de la coopération ou de la prise alimentaire.</dd></div>
+            <div><dt>Recommandations de suivi</dt><dd>Maintenir ces conditions toute la vie du patient et réévaluer sans délai toute altération durable de l’appétit, de l’activité ou de l’état général.</dd></div>
           </dl>
-          <p className="contract-question">Acceptez-vous l’adoption de Ratoncito ?</p>
-          <div className="contract-actions"><button className="primary-button" onClick={() => { setAdopted(true); setClosed(true); }}>Oui, j’adopte Ratoncito</button>
-            <button className="secondary-button" onClick={() => { setAdopted(false); setClosed(true); }}>Non</button></div>
+          <div className="contract-validation">
+            <p><strong>Validation de la prise en charge</strong><span>Acceptez-vous d’assurer ces conditions essentielles au bien-être de Ratoncito ?</span></p>
+            <div className="contract-actions">
+              <button className="primary-button" onClick={() => { setAdopted(true); setClosed(true); }}>Oui, j’adopte Ratoncito</button>
+              <button className="secondary-button" onClick={() => { setAdopted(false); setClosed(true); }}>Non</button>
+            </div>
+          </div>
         </article>
       </>}
     </section>;
