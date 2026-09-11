@@ -1,38 +1,33 @@
 # Sources et méthode clinique
 
-## Positionnement
+## Cadre du dossier
 
-Le dossier est une expérience narrative interactive, pas un logiciel vétérinaire
-et pas un outil d’aide à la décision clinique. Les constantes et résultats sont
-synthétiques. Ils servent à construire une progression crédible autour d’un
-phénomène comportemental contextuel.
-
-Le patient est volontairement défini comme Rattus rattus. La plupart des données
-cliniques publiées et facilement accessibles concernent le rat de compagnie
-Rattus norvegicus. Cette différence est conservée au lieu d’être masquée :
-les résultats chiffrés sont utilisés comme comparaison prudente, et l’interface
-évite d’afficher une fausse plage de référence spécifique au rat noir.
+Le compte rendu concerne un patient *Rattus rattus*. La majorité des données
+cliniques publiées et facilement accessibles portent sur le rat de compagnie
+*Rattus norvegicus*. Cette différence est indiquée explicitement : les résultats
+chiffrés sont utilisés comme comparaisons prudentes et aucune plage de référence
+spécifique au rat noir n’est affirmée sans source.
 
 ## Sources consultées
 
 ### Examen des petits rongeurs
 
-J. Daviau, Clinical evaluation of rodents, Veterinary Clinics of North America:
-Exotic Animal Practice, 1999, 2(2), 429–445. PMID 11228738, DOI
-10.1016/S1094-9194(17)30131-7.
+J. Daviau, Clinical evaluation of rodents, *Veterinary Clinics of North America:
+Exotic Animal Practice*, 1999, 2(2), 429–445. PMID 11228738,
+DOI 10.1016/S1094-9194(17)30131-7.
 
 https://pubmed.ncbi.nlm.nih.gov/11228738/
 
-Cette revue soutient la structure générale du parcours : approche systématique,
-constitution d’une liste de problèmes, observation initiale avant la contention et
-adaptation de l’examen à la petite taille et au métabolisme élevé des rongeurs.
+Cette revue soutient l’approche systématique retenue : constitution d’une liste
+de problèmes, observation initiale avant contention et adaptation de l’examen à
+la petite taille et au métabolisme élevé des rongeurs.
 
 ### Intervalles biochimiques chez le rat de compagnie
 
 A. Houtmeyers, L. Duchateau, B. Grünewald et K. Hermans, Reference intervals for
-biochemical blood variables, packed cell volume, and body temperature in pet rats
-(Rattus norvegicus) using point-of-care testing, Veterinary Clinical Pathology,
-2016, 45, 669–679. DOI 10.1111/vcp.12419.
+biochemical blood variables, packed cell volume, and body temperature in pet
+rats (*Rattus norvegicus*) using point-of-care testing, *Veterinary Clinical
+Pathology*, 2016, 45, 669–679. DOI 10.1111/vcp.12419.
 
 https://onlinelibrary.wiley.com/doi/10.1111/vcp.12419
 
@@ -47,69 +42,62 @@ L’étude porte sur 123 rats de compagnie cliniquement sains et rapporte notamm
 - PCV : 40–50 % ;
 - température corporelle : 35,8–39,3 °C.
 
-Dans l’application, ces intervalles sont accompagnés du marqueur ¹ et de la
-mention de comparaison avec Rattus norvegicus. Ils ne sont pas présentés comme
-des intervalles validés pour Rattus rattus.
+Dans le dossier, ces intervalles portent le marqueur ¹ et la mention de
+comparaison avec *Rattus norvegicus*. Ils ne sont pas présentés comme des
+intervalles validés pour *Rattus rattus*.
 
-### Paramètres vitaux de rat
+### Paramètres vitaux du rat
 
 Rat Guide, Vital Statistics in Rats :
 
 https://ratguide.com/health/vital_statistics/
 
-Cette ressource secondaire a été utilisée comme point de contrôle pratique pour
-la fréquence respiratoire des rats. L’interface choisit de ne pas afficher une
-plage de référence respiratoire comme si elle était universelle, et présente la
-fréquence respiratoire comme une mesure au repos à interpréter dans son contexte.
+Cette ressource secondaire sert de point de contrôle pratique pour la fréquence
+respiratoire. La mesure au repos reste interprétée dans son contexte, sans plage
+présentée comme universelle.
 
-## Choix de scénario
+## Méthode d’exploration comportementale
 
-Le parcours commence par une observation non alarmante : état général conservé,
-appétit conservé, examen neurologique de base non contributif et paramètres de
-repos rassurants. Cela rend logique l’ouverture d’une comparaison comportementale
-avant une imagerie lourde.
+L’état général, l’appétit, l’examen neurologique de base et les paramètres de
+repos sont d’abord évalués. En l’absence de signe d’appel organique, l’exploration
+compare ensuite des conditions d’exposition dans un même environnement.
 
-Le module de stimulation utilise des variables descriptives :
+Les variables descriptives retenues sont :
 
 - latence d’orientation ;
 - persistance de l’attention ;
 - approche ou recherche de contact ;
 - retour au calme.
 
-La seule condition fortement positive est Individu A. Les valeurs de ce module
-sont explicitement indiquées comme une simulation narrative dans le dossier de
-source ; elles ne prétendent pas être une échelle comportementale publiée.
+La réponse à l’Individu A est comparée à six conditions : environnement familier,
+alimentation présentée par un tiers, enrichissement, manipulation neutre,
+présence humaine non spécifique et absence de stimulus social. Ces observations
+sont intra-individuelles et aucune échelle standardisée n’est revendiquée.
 
-## Direction de marque
+## Présentation du dossier
 
-La présence visuelle d’un centre vétérinaire établi s’inspire du langage général
-des cliniques de référé : signalétique nette, hiérarchie médicale, palette calme,
-statuts lisibles et information dense. L’identité graphique du projet est originale
-et ne réutilise aucun logo, nom ou asset tiers.
+La hiérarchie médicale, la palette calme et la densité d’information s’inspirent
+du langage visuel général des centres vétérinaires de référé. L’identité graphique
+reste originale et ne reprend aucun logo ni élément protégé d’un établissement.
 
-Référence d’ambiance consultée :
+Référence d’ambiance : https://vet30000.com/
 
-https://vet30000.com/
+## Limites d’interprétation
 
-## Limites à préserver
-
-- ne pas transformer les résultats en conseil médical réel ;
-- ne pas ajouter de fausses plages de référence pour Rattus rattus ;
-- ne pas remplacer le rat par un chien ou un chat ;
-- ne pas ajouter d’imagerie ou de test spectaculaire sans justification ;
-- le destinataire est nommé dès l’ouverture ; la synthèse confirme son rôle d’Individu A ;
-- conserver les interactions comme des étapes cliniques, sans score de jeu.
+- ne pas extrapoler de plage de référence non publiée pour *Rattus rattus* ;
+- ne pas substituer une valeur canine ou féline ;
+- ne pas conclure à une affection organique sans signe clinique concordant ;
+- interpréter les résultats biologiques avec le laboratoire et l’espèce ;
+- considérer la comparaison comportementale comme une observation
+  intra-individuelle ;
+- réévaluer toute modification durable de l’état général, de l’appétit ou de
+  l’activité.
 
 ## Dossier individuel et photographies
 
-Les comparaisons de coopération (six présentations par condition), les anecdotes
-et la conclusion d’adoption appartiennent au scénario. Elles ne constituent pas
-une recommandation de prise en charge animale. Le refus conduit à un épilogue
-explicitement fictif et réversible. Aucune acceptation n’est envoyée à un serveur.
+Le dossier est adressé à VET30000 sans revendiquer une rédaction ou une validation
+par la clinique. L’adresse a été vérifiée sur
+https://vet30000.com/informations-pratiques/ le 10 septembre 2026. Le nom de la
+destinataire reste injecté par variable d’environnement.
 
-Le dossier est adressé à VET30000 ; il n’est pas rédigé ou validé par la clinique.
-Adresse vérifiée sur https://vet30000.com/informations-pratiques/ le 10 septembre
-2026. Le nom de la destinataire reste injecté par variable d’environnement.
-
-Les deux photographies sont générées, non des documents médicaux réels. Voir
-`image-prompts.md` pour les prompts et les fichiers livrés.
+Les deux photographies cliniques sont décrites dans `image-prompts.md`.
