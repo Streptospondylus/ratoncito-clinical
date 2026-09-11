@@ -232,7 +232,6 @@ function ClosureScreen({ adopted }: { adopted: boolean }) {
         <div><dt>Effets personnels</dt><dd>Un petit cadeau, remis à son unique destinataire.</dd></div></dl>
       <p className="closure-note">Le raton a trouvé sa place.</p>
     </> : <p className="closure-note">À la sortie de la clinique, Ratoncito s’est jeté de lui-même dans la gueule d’un chat. Aucune intervention n’a pu être réalisée.</p>}
-    {adopted ? <footer className="document-footer">Fiction personnelle · Document sans valeur médicale ou contractuelle.</footer> : null}
   </main>;
 }
 
@@ -910,7 +909,6 @@ function App() {
           <p className="contract-question">Acceptez-vous l’adoption de Ratoncito ?</p>
           <div className="contract-actions"><button className="primary-button" onClick={() => { setAdopted(true); setClosed(true); }}>Oui, j’adopte Ratoncito</button>
             <button className="secondary-button" onClick={() => { setAdopted(false); setClosed(true); }}>Non</button></div>
-          <p className="document-footer">Accord symbolique.</p>
         </article>
       </>}
     </section>;
