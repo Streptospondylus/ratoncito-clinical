@@ -931,7 +931,7 @@ function App() {
           <header className="report-header">
             <div>
               <p className="card-eyebrow">COMPTE RENDU DE CONSULTATION · NAC</p>
-              <h2>Ratoncito</h2>
+              <h2>Synthèse clinique</h2>
             </div>
             <span className="report-reference">{appConfig.case.id}</span>
           </header>
@@ -1017,7 +1017,7 @@ function App() {
                 <ol>
                   <li><span>01</span><p>Confier la prise en charge à l’individu identifié.</p></li>
                   <li><span>02</span><p>Maintenir les repères familiers, les routines alimentaires, le repos partagé et les contacts relationnels essentiels.</p></li>
-                  <li><span>03</span><p>Surveiller l’état général, l’appétit et toute modification comportementale durable.</p></li>
+                  <li><span>03</span><p>Surveiller l’humeur, le repos, l’agitation, l’activité masturbatoire de compensation et toute modification comportementale durable.</p></li>
                 </ol>
               </div>
             </section>
@@ -1038,9 +1038,9 @@ function App() {
             <div><dt>Conditions de repos</dt><dd>Repos partagé, notamment devant Hunter × Hunter, avec possibilité de demeurer au contact et de surveiller paisiblement les mouvements des pieds.</dd></div>
             <div><dt>Alimentation et routines</dt><dd>Repas réguliers préparés ou accompagnés par l’adoptante, sorties alimentaires au restaurant et rituels de retrouvailles incluant la remise de son cadeau.</dd></div>
             <div><dt>Contacts et besoins relationnels essentiels</dt><dd>Affection, écoute, proximité soutenue et bouche-à-bouche. Le coït, désigné « pan pan », ainsi que le besoin de téter font partie des modalités relationnelles indispensables documentées dans ce dossier.</dd></div>
-            <div><dt>Signes de bien-être à préserver</dt><dd>Approche spontanée, maintien volontaire au contact, prise alimentaire régulière, relâchement postural et repos sans contrôle anxieux de la sortie.</dd></div>
-            <div><dt>Conséquences possibles d’une privation</dt><dd>Recherche persistante de l’individu, vigilance accrue, difficulté à maintenir le repos et diminution de la coopération ou de la prise alimentaire.</dd></div>
-            <div><dt>Recommandations de suivi</dt><dd>Maintenir ces conditions toute la vie du patient et réévaluer sans délai toute altération durable de l’appétit, de l’activité ou de l’état général.</dd></div>
+            <div><dt>Signes de bien-être à préserver</dt><dd>Approche spontanée, maintien volontaire au contact, humeur expressive, relâchement postural, repos apaisé et retrouvailles investies.</dd></div>
+            <div><dt>Conséquences possibles d’une privation</dt><dd>Agitation affective, attente répétée près de la porte ou du téléphone, difficulté à se poser et activité masturbatoire de compensation, avec multiplication des rituels de retrouvailles.</dd></div>
+            <div><dt>Recommandations de suivi</dt><dd>Maintenir ces conditions toute la vie du patient et réévaluer sans délai toute modification durable de l’humeur, du repos, de l’agitation ou des comportements relationnels.</dd></div>
           </dl>
           <div className="contract-validation">
             <p><strong>Validation de la prise en charge</strong><span>Acceptez-vous d’assurer ces conditions essentielles au bien-être de Ratoncito ?</span></p>
