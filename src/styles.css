@@ -2602,6 +2602,17 @@ a:focus-visible {
   color: #fff;
 }
 
+/* Keep the selected label legible on touch browsers that retain :hover. */
+.app-shell .decision-button.decision-button-selected,
+.app-shell .decision-button.decision-button-selected:hover,
+.app-shell .decision-button.decision-button-selected:active,
+.app-shell .decision-button.decision-button-selected:focus {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
 .hypothesis-feedback {
   display: flex;
   align-items: flex-start;
