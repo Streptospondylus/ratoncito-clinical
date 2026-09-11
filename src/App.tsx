@@ -230,7 +230,7 @@ function ClosureScreen({ adopted, onReturn }: { adopted: boolean; onReturn: () =
       </header>
       <section className="closure-body" aria-labelledby="closure-title">
         <p className="closure-kicker">{adopted ? "Décision de prise en charge" : "Compte rendu d’incident"}</p>
-        <h1 id="closure-title" tabIndex={-1}>{adopted ? <>Ratoncito<br />est adopté.</> : <>Décès de<br />Ratoncito.</>}</h1>
+        <h1 id="closure-title" tabIndex={-1}>{adopted ? <>Adoption de<br />Ratoncito.</> : <>Décès de<br />Ratoncito.</>}</h1>
         {adopted ? <>
           <p className="closure-accepted-copy">
             Vous avez adopté Ratoncito. Il est désormais placé sous votre responsabilité et va prendre toute sa place dans votre quotidien.
