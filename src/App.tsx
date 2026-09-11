@@ -221,19 +221,18 @@ function Portal({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-function ClosureScreen({ adopted, onReconsider }: { adopted: boolean; onReconsider: () => void }) {
+function ClosureScreen({ adopted }: { adopted: boolean }) {
   return <main className="referral-cover closure-document">
     <header className="document-heading"><span>CLÔTURE DU DOSSIER</span><span>{appConfig.case.id}</span></header>
-    <p className="eyebrow">{adopted ? "Contrat d’adoption" : "Épilogue fictif"}</p>
+    <p className="eyebrow">{adopted ? "Contrat d’adoption" : "Incident terminal"}</p>
     <h1 id="closure-title" tabIndex={-1}>{adopted ? "Adoption acceptée." : "Décès de Ratoncito."}</h1>
     {adopted ? <>
       <dl className="document-fields"><div><dt>Adoptante</dt><dd>{appConfig.recipient.displayName || "Vous"}</dd></div>
         <div><dt>Évolution immédiate</dt><dd>Recherche terminée. Patient installé au contact.</dd></div>
         <div><dt>Effets personnels</dt><dd>Un petit cadeau, remis à son unique destinataire.</dd></div></dl>
       <p className="closure-note">Le raton a trouvé sa place.</p>
-    </> : <><p>Adoption refusée. Dossier classé.</p>
-      <button className="primary-button" onClick={onReconsider}>Réexaminer la demande</button></>}
-    <footer className="document-footer">Fiction personnelle · Document sans valeur médicale ou contractuelle.</footer>
+    </> : <p className="closure-note">À la sortie de la clinique, Ratoncito s’est jeté de lui-même dans la gueule d’un chat. Aucune intervention n’a pu être réalisée.</p>}
+    {adopted ? <footer className="document-footer">Fiction personnelle · Document sans valeur médicale ou contractuelle.</footer> : null}
   </main>;
 }
 
@@ -348,7 +347,7 @@ function App() {
   }
 
   if (closed) {
-    return <ClosureScreen adopted={adopted} onReconsider={() => setClosed(false)} />;
+    return <ClosureScreen adopted={adopted} />;
   }
 
   function renderOverview() {
