@@ -4718,6 +4718,10 @@ a:focus-visible {
 .report-plan li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 11px; }
 .report-plan li span { color: #78918a; font-size: .65rem; font-weight: 750; letter-spacing: .05em; }
 .report-plan li p { margin: 0; color: #405b57; font-size: .88rem; line-height: 1.5; }
+/* The outcome palette must win over the legacy three-column report rules above. */
+.clinical-report-card .report-outcome > .report-conclusion { background: #173f43; }
+.clinical-report-card .report-outcome > .report-conclusion p { color: #fff; }
+.clinical-report-card .report-outcome > .report-plan { background: #edf5f2; }
 
 .adoption-contract { margin-top: 22px; padding: 0; overflow: hidden; }
 .contract-header { padding: 28px; border-bottom: 1px solid var(--line); }
